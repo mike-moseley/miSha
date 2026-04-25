@@ -1,67 +1,48 @@
-# c-template
+# miSHa
 
-A minimal C90 project template with CMake, clangd support, and Unity unit testing.
+A basic Unix shell written in C90, built with CMake.
+Uses custom data structures and allocators from sibling projects:
+[c-data-structures](https://github.com/mike-moseley/c-data-structures) | [my-alloc](https://github.com/mike-moseley/my-alloc)
 
-## Setup
+*Outline and roadmap written by Claude (claude.ai/code).*
 
-After cloning, configure the project name and binary name by replacing `c-project` and `app` in `CMakeLists.txt`.
+---
 
-Configure the build system (run this after adding/removing source or header files, or after editing `CMakeLists.txt`):
-
-```bash
-./clangd_cmake.sh
-```
-
-This generates `cmake/compile_commands.json` used by clangd for IDE integration.
-
-## Build & Run
-
-```bash
-cmake --build cmake
-./bin/app
-```
-
-Or use the convenience script:
-
-```bash
-./build_run.sh
-```
-
-## Debugging
-
-Build with debug info and launch gdb:
-
-```bash
-./gdb_build_run.sh
-```
-
-## Testing
-
-Tests live in `test/`. Each test file requires a corresponding block in `CMakeLists.txt` — see the existing `test_example` block as a guide. Run all tests:
-
-```bash
-./tests_build_run.sh
-```
-
-The script exits with a non-zero status if any test fails.
-
-## Project Structure
+## Architecture
 
 ```
-.
-├── src/            # Source files (.c) — all are compiled automatically
-├── include/        # Header files (.h)
-├── test/
-│   ├── unity/      # Unity test framework
-│   └── test_*.c    # Test files
-├── bin/            # Compiled binaries (git-ignored)
-│   └── test/       # Compiled test binaries
-└── cmake/          # CMake build directory (git-ignored)
+main.c        REPL loop — prompt, read, dispatch
+lexer.c       tokenize raw input into a NULL-terminated argv array
+parser.c      token stream → command struct (pipelines, redirects, sequences)
+executor.c    fork/exec for external commands; pipe and redirect setup
+builtins.c    built-in handlers: cd, exit, export, unset
+env.c         environment variable table and $VAR expansion
 ```
 
-## Adding a New Test
+---
 
-1. Create `test/test_foo.c` using `test_example.c` as a starting point.
-2. Copy the test block in `CMakeLists.txt`, replacing `test_example` with `test_foo`.
-3. Add `test_foo` to the `add_custom_target(tests DEPENDS ...)` line.
-4. Re-run `./clangd_cmake.sh` to reconfigure.
+## Roadmap
+
+### Milestone 1 — Simple commands
+- [ ] REPL loop: prompt, `fgets`, strip newline, EOF handling
+- [ ] Lexer: split input on whitespace into `char *argv[]`
+- [ ] Executor: `fork` + `execvp` + `waitpid`
+- [ ] Built-in: `exit`
+
+### Milestone 2 — Environment
+- [ ] Built-ins: `cd`, `pwd`, `export`, `unset`
+- [ ] `$VAR` expansion in the lexer
+- [ ] Inherit and manage the environment table (hash map)
+
+### Milestone 3 — Pipelines
+- [ ] Parser: recognise `|` and build a pipeline structure
+- [ ] Executor: chain commands with `pipe(2)`, dup stdin/stdout
+
+### Milestone 4 — Redirects
+- [ ] Parser: recognise `>`, `>>`, `<`
+- [ ] Executor: open files and `dup2` onto stdin/stdout/stderr
+
+### Milestone 5 — Quality of life
+- [ ] Background jobs with `&`
+- [ ] Command history (ring buffer)
+- [ ] `Ctrl-C` handling (`SIGINT`)
