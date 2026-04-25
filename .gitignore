@@ -1,0 +1,8 @@
+cmake/
+compile_commands.json
+bin/
+.cache/
+notes.md
+resources.md
+.clangd
+.clang-format

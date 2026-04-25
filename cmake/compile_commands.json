@@ -1,0 +1,20 @@
+[
+{
+  "directory": "/home/mike/projects/C/c-template/cmake",
+  "command": "/usr/bin/cc  -I/home/mike/projects/C/c-template/include -std=c90 -Wall -Wextra -g -pedantic -o CMakeFiles/app.dir/src/main.c.o -c /home/mike/projects/C/c-template/src/main.c",
+  "file": "/home/mike/projects/C/c-template/src/main.c",
+  "output": "CMakeFiles/app.dir/src/main.c.o"
+},
+{
+  "directory": "/home/mike/projects/C/c-template/cmake",
+  "command": "/usr/bin/cc  -I/home/mike/projects/C/c-template/include -I/home/mike/projects/C/c-template/test/unity -std=c90 -Wall -Wextra -g -o CMakeFiles/test_example.dir/test/test_example.c.o -c /home/mike/projects/C/c-template/test/test_example.c",
+  "file": "/home/mike/projects/C/c-template/test/test_example.c",
+  "output": "CMakeFiles/test_example.dir/test/test_example.c.o"
+},
+{
+  "directory": "/home/mike/projects/C/c-template/cmake",
+  "command": "/usr/bin/cc  -I/home/mike/projects/C/c-template/include -I/home/mike/projects/C/c-template/test/unity -std=c90 -Wall -Wextra -g -o CMakeFiles/test_example.dir/test/unity/unity.c.o -c /home/mike/projects/C/c-template/test/unity/unity.c",
+  "file": "/home/mike/projects/C/c-template/test/unity/unity.c",
+  "output": "CMakeFiles/test_example.dir/test/unity/unity.c.o"
+}
+]

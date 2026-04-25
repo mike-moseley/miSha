@@ -1,0 +1,6 @@
+/home/mike/projects/C/c-template/cmake/CMakeFiles/app.dir
+/home/mike/projects/C/c-template/cmake/CMakeFiles/tests.dir
+/home/mike/projects/C/c-template/cmake/CMakeFiles/test_example.dir
+/home/mike/projects/C/c-template/cmake/CMakeFiles/test.dir
+/home/mike/projects/C/c-template/cmake/CMakeFiles/edit_cache.dir
+/home/mike/projects/C/c-template/cmake/CMakeFiles/rebuild_cache.dir

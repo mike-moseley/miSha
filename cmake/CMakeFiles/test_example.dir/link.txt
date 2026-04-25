@@ -1,0 +1,1 @@
+/usr/bin/cc -Wl,--dependency-file=CMakeFiles/test_example.dir/link.d CMakeFiles/test_example.dir/test/test_example.c.o CMakeFiles/test_example.dir/test/unity/unity.c.o -o /home/mike/projects/C/c-template/bin/test/test_example
