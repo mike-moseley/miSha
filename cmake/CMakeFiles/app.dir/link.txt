@@ -1,1 +1,0 @@
-/usr/bin/cc -Wl,--dependency-file=CMakeFiles/app.dir/link.d CMakeFiles/app.dir/src/builtins.c.o CMakeFiles/app.dir/src/executor.c.o CMakeFiles/app.dir/src/lexer.c.o CMakeFiles/app.dir/src/main.c.o -o /home/mike/projects/C/miSHa/bin/app

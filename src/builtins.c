@@ -46,9 +46,7 @@ BuiltinCode builtin_pwd(void) {
 }
 
 BuiltinCode builtin_export(char **argv) {
-	char *delimit_ptr;
-	char *key;
-	char *value;
+	char *delimit_ptr, *key, *value;
 	if (argv[1] == NULL || *argv[1] == '\0') {
 		puts("Please provide environment variable in this syntax `export $KEY=value`");
 		return BUILTIN_FAILED;
