@@ -6,7 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 
-#define INITIAL_MAP_SIZE 56
+#define INITIAL_MAP_SIZE 64
 
 hashmap_t *envMap;
 extern char **environ;
@@ -36,7 +36,6 @@ int initEnv(void) {
 		*delimit_ptr = '\0';
 		key = environ_ptr;
 		value = delimit_ptr + 1;
-		mmapFree(environ_ptr);
 
 		err = mmapAlloc(strlen(key) + 1, &key_ptr);
 		if(err != ALLOC_OK) {
@@ -50,8 +49,45 @@ int initEnv(void) {
 		};
 		strcpy(value_ptr, value);
 
+		mmapFree(environ_ptr);
 		insertToHashMap(envMap, key_ptr, value_ptr);
 	}
 	
 	return 0;
+}
+
+char *getEnv(char *key) {
+	return getFromHashMap(envMap, key);
+}
+
+/* WARNING: KEY LEAK ON OVERWRITE!
+ *			IMPLEMENT GETTING ACCESS TO KEY POINTER IN HASHMAP
+ * */
+int setEnv(char *key, char *value) {
+	AllocError err;
+	void *key_ptr, *value_ptr, *duplicate_check;
+
+	duplicate_check = getEnv(key);
+	if(duplicate_check != NULL) mmapFree(duplicate_check);
+
+	err = mmapAlloc(strlen(key) + 1, &key_ptr);
+	if(err != ALLOC_OK) {
+		fprintf(stderr, "mmapAlloc in setEnv in env.c: AllocError=%d", err);
+	}
+	strcpy(key_ptr, key);
+
+	err = mmapAlloc(strlen(value) + 1, &value_ptr);
+	if(err != ALLOC_OK) {
+		fprintf(stderr, "mmapAlloc in setEnv in env.c: AllocError=%d", err);
+	}
+	strcpy(value_ptr, value);
+
+	return insertToHashMap(envMap, key_ptr, value_ptr);
+}
+
+void removeEnv(char *key) {
+	char *value;
+	value = getEnv(key);
+	mmapFree(value);
+	removeFromHashMap(envMap, key);
 }

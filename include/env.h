@@ -3,8 +3,8 @@
 
 int initEnv(void);
 char *getEnv(char *key);
-int setEnv(char *env);
-int removeEnv(char *env);
+int setEnv(char *key, char *value);
+void removeEnv(char *key);
 
 #endif
 
