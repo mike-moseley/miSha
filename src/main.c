@@ -4,9 +4,7 @@
 #include "lexer.h"
 #include "executor.h"
 #include "builtins.h"
-
-#define BUF_SIZE 1024
-#define MAX_ARGS 16
+#include "consts.h"
 
 int main(void) {
 	char buf[BUF_SIZE];

@@ -17,4 +17,5 @@ CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
  /usr/include/bits/stdlib-float.h /usr/include/string.h \
  /home/mike/projects/C/miSHa/include/lexer.h \
  /home/mike/projects/C/miSHa/include/executor.h \
- /home/mike/projects/C/miSHa/include/builtins.h
+ /home/mike/projects/C/miSHa/include/builtins.h \
+ /home/mike/projects/C/miSHa/include/consts.h

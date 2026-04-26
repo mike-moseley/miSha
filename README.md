@@ -32,7 +32,7 @@ env.c         environment variable table and $VAR expansion
 ### Milestone 2 — Environment
 - Built-ins:
   - [x] `cd`
-  - [ ] `pwd`
+  - [x] `pwd`
   - [ ] `export`
   - [ ] `unset`
 - [ ] `$VAR` expansion in the lexer

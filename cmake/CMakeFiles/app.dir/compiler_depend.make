@@ -20,6 +20,7 @@
 
 CMakeFiles/app.dir/src/builtins.c.o: /home/mike/projects/C/miSHa/src/builtins.c \
   /home/mike/projects/C/miSHa/include/builtins.h \
+  /home/mike/projects/C/miSHa/include/consts.h \
   /usr/include/bits/confname.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
@@ -112,6 +113,7 @@ CMakeFiles/app.dir/src/lexer.c.o: /home/mike/projects/C/miSHa/src/lexer.c \
 
 CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
   /home/mike/projects/C/miSHa/include/builtins.h \
+  /home/mike/projects/C/miSHa/include/consts.h \
   /home/mike/projects/C/miSHa/include/executor.h \
   /home/mike/projects/C/miSHa/include/lexer.h \
   /usr/include/bits/floatn-common.h \
@@ -150,7 +152,7 @@ CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
 
 /usr/include/sys/wait.h:
 
-/home/mike/projects/C/miSHa/include/builtins.h:
+/usr/include/sys/types.h:
 
 /usr/include/bits/stdio_lim.h:
 
@@ -162,13 +164,17 @@ CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
 
 /usr/include/sys/cdefs.h:
 
-/usr/include/bits/long-double.h:
-
 /usr/include/bits/libc-header-start.h:
 
 /usr/include/bits/floatn.h:
 
 /usr/include/bits/confname.h:
+
+/usr/include/bits/long-double.h:
+
+/home/mike/projects/C/miSHa/include/consts.h:
+
+/usr/include/bits/waitflags.h:
 
 /usr/include/bits/floatn-common.h:
 
@@ -183,6 +189,8 @@ CMakeFiles/app.dir/src/main.c.o:
 /usr/lib/crti.o:
 
 /usr/include/unistd.h:
+
+/home/mike/projects/C/miSHa/include/builtins.h:
 
 /usr/lib/libc.so:
 
@@ -265,7 +273,3 @@ CMakeFiles/app.dir/src/lexer.c.o:
 /home/mike/projects/C/miSHa/src/executor.c:
 
 /usr/include/bits/types/clockid_t.h:
-
-/usr/include/bits/waitflags.h:
-
-/usr/include/sys/types.h:

@@ -11,7 +11,8 @@ typedef enum{
 	BUILTIN_NOT_FOUND = -1,
 	BUILTIN_EXIT,
 	BUILTIN_CD,
-	BUILTIN_PWD
+	BUILTIN_PWD,
+	BUILTIN_EXPORT
 } BuiltinCommmands;
 
 BuiltinCode handle_builtins(char **argv);
