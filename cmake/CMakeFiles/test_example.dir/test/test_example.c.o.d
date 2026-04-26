@@ -1,8 +1,8 @@
 CMakeFiles/test_example.dir/test/test_example.c.o: \
- /home/mike/projects/C/c-template/test/test_example.c \
+ /home/mike/projects/C/miSHa/test/test_example.c \
  /usr/include/stdc-predef.h \
- /home/mike/projects/C/c-template/test/unity/unity.h \
- /home/mike/projects/C/c-template/test/unity/unity_internals.h \
+ /home/mike/projects/C/miSHa/test/unity/unity.h \
+ /home/mike/projects/C/miSHa/test/unity/unity_internals.h \
  /usr/include/setjmp.h /usr/include/features.h \
  /usr/include/features-time64.h /usr/include/bits/wordsize.h \
  /usr/include/bits/timesize.h /usr/include/sys/cdefs.h \

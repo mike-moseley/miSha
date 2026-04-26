@@ -1,7 +1,13 @@
 file(REMOVE_RECURSE
-  "/home/mike/projects/C/c-template/bin/app"
-  "/home/mike/projects/C/c-template/bin/app.pdb"
+  "/home/mike/projects/C/miSHa/bin/app"
+  "/home/mike/projects/C/miSHa/bin/app.pdb"
   "CMakeFiles/app.dir/link.d"
+  "CMakeFiles/app.dir/src/builtins.c.o"
+  "CMakeFiles/app.dir/src/builtins.c.o.d"
+  "CMakeFiles/app.dir/src/executor.c.o"
+  "CMakeFiles/app.dir/src/executor.c.o.d"
+  "CMakeFiles/app.dir/src/lexer.c.o"
+  "CMakeFiles/app.dir/src/lexer.c.o.d"
   "CMakeFiles/app.dir/src/main.c.o"
   "CMakeFiles/app.dir/src/main.c.o.d"
 )

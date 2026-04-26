@@ -8,8 +8,11 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
-  "/home/mike/projects/C/c-template/src/main.c" "CMakeFiles/app.dir/src/main.c.o" "gcc" "CMakeFiles/app.dir/src/main.c.o.d"
-  "" "/home/mike/projects/C/c-template/bin/app" "gcc" "CMakeFiles/app.dir/link.d"
+  "/home/mike/projects/C/miSHa/src/builtins.c" "CMakeFiles/app.dir/src/builtins.c.o" "gcc" "CMakeFiles/app.dir/src/builtins.c.o.d"
+  "/home/mike/projects/C/miSHa/src/executor.c" "CMakeFiles/app.dir/src/executor.c.o" "gcc" "CMakeFiles/app.dir/src/executor.c.o.d"
+  "/home/mike/projects/C/miSHa/src/lexer.c" "CMakeFiles/app.dir/src/lexer.c.o" "gcc" "CMakeFiles/app.dir/src/lexer.c.o.d"
+  "/home/mike/projects/C/miSHa/src/main.c" "CMakeFiles/app.dir/src/main.c.o" "gcc" "CMakeFiles/app.dir/src/main.c.o.d"
+  "" "/home/mike/projects/C/miSHa/bin/app" "gcc" "CMakeFiles/app.dir/link.d"
   )
 
 # Targets to which this target links which contain Fortran sources.

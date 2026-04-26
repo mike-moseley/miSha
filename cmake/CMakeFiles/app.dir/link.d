@@ -1,7 +1,10 @@
-/home/mike/projects/C/c-template/bin/app: \
+/home/mike/projects/C/miSHa/bin/app: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
+  CMakeFiles/app.dir/src/builtins.c.o \
+  CMakeFiles/app.dir/src/executor.c.o \
+  CMakeFiles/app.dir/src/lexer.c.o \
   CMakeFiles/app.dir/src/main.c.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libgcc_s.so \
@@ -30,6 +33,12 @@
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
+
+CMakeFiles/app.dir/src/builtins.c.o:
+
+CMakeFiles/app.dir/src/executor.c.o:
+
+CMakeFiles/app.dir/src/lexer.c.o:
 
 CMakeFiles/app.dir/src/main.c.o:
 

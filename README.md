@@ -24,13 +24,17 @@ env.c         environment variable table and $VAR expansion
 ## Roadmap
 
 ### Milestone 1 — Simple commands
-- [ ] REPL loop: prompt, `fgets`, strip newline, EOF handling
-- [ ] Lexer: split input on whitespace into `char *argv[]`
-- [ ] Executor: `fork` + `execvp` + `waitpid`
-- [ ] Built-in: `exit`
+- [x] REPL loop: prompt, `fgets`, strip newline, EOF handling
+- [x] Lexer: split input on whitespace into `char *argv[]`
+- [x] Executor: `fork` + `execvp` + `waitpid`
+- [x] Built-in: `exit`
 
 ### Milestone 2 — Environment
-- [ ] Built-ins: `cd`, `pwd`, `export`, `unset`
+- Built-ins:
+  - [x] `cd`
+  - [ ] `pwd`
+  - [ ] `export`
+  - [ ] `unset`
 - [ ] `$VAR` expansion in the lexer
 - [ ] Inherit and manage the environment table (hash map)
 

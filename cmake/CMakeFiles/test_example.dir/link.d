@@ -1,9 +1,12 @@
-/home/mike/projects/C/c-template/bin/test/test_example: \
+/home/mike/projects/C/miSHa/bin/test/test_example: \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/Scrt1.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/crti.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o \
   CMakeFiles/test_example.dir/test/test_example.c.o \
   CMakeFiles/test_example.dir/test/unity/unity.c.o \
+  CMakeFiles/test_example.dir/src/builtins.c.o \
+  CMakeFiles/test_example.dir/src/executor.c.o \
+  CMakeFiles/test_example.dir/src/lexer.c.o \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libgcc_s.so \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/../../../../lib/libgcc_s.so \
@@ -35,6 +38,12 @@
 CMakeFiles/test_example.dir/test/test_example.c.o:
 
 CMakeFiles/test_example.dir/test/unity/unity.c.o:
+
+CMakeFiles/test_example.dir/src/builtins.c.o:
+
+CMakeFiles/test_example.dir/src/executor.c.o:
+
+CMakeFiles/test_example.dir/src/lexer.c.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/libgcc.a:
 
