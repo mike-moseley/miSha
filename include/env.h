@@ -1,10 +1,11 @@
 #ifndef ENV_H
 #define ENV_H
+#include "cds_types.h"
 
-int initEnv(void);
+cds_err_t initEnv(void);
 char *getEnv(char *key);
-int setEnv(char *key, char *value);
-void removeEnv(char *key);
+cds_err_t setEnv(char *key, char *value);
+cds_err_t removeEnv(char *key);
 
 #endif
 

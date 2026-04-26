@@ -5,11 +5,13 @@
 #include "executor.h"
 #include "builtins.h"
 #include "consts.h"
+#include "env.h"
 
 int main(void) {
 	char buf[BUF_SIZE];
 	char *argv[MAX_ARGS];
 	BuiltinCode builtin_code;
+	initEnv();
 
 	while(1) {
 		printf("$ ");

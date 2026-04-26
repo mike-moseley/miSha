@@ -153,19 +153,35 @@ cds_err_t insertToHashMap(hashmap_t *hashmap, void *key, void *value) {
 	if(hash_node == NULL) {
 		return CDS_ERR_OOM;
 	}
-	node_key = malloc(hashmap->key_size);
+	if(hashmap->key_size == 0) {
+		node_key = malloc(strlen(key) + 1);
+	} else {
+		node_key = malloc(hashmap->key_size);
+	}
 	if(node_key == NULL) {
 		free(hash_node);
 		return CDS_ERR_OOM;
 	}
-	node_value = malloc(hashmap->value_size);
+	if(hashmap->value_size == 0) {
+		node_value = malloc(strlen(value) + 1);
+	} else {
+		node_value = malloc(hashmap->value_size);
+	}
 	if(node_value == NULL) {
 		free(node_key);
 		free(hash_node);
 		return CDS_ERR_OOM;
 	}
-	memcpy(node_key, key, hashmap->key_size);
-	memcpy(node_value, value, hashmap->value_size);
+	if(hashmap->key_size == 0) {
+		memcpy(node_key, key, strlen(key) + 1);
+	} else {
+		memcpy(node_key, key, hashmap->key_size);
+	}
+	if(hashmap->value_size == 0) {
+		memcpy(node_value, value, strlen(value) + 1);
+	} else {
+		memcpy(node_value, value, hashmap->value_size);
+	}
 	hash_node->key = node_key;
 	hash_node->value = node_value;
 	hash_node->next = NULL;
@@ -176,7 +192,16 @@ cds_err_t insertToHashMap(hashmap_t *hashmap, void *key, void *value) {
 		current_bucket = hashmap->buckets[hash];
 		while(current_bucket->next != NULL) {
 			if(keycmp(hashmap, current_bucket->key, key)) {
-				memcpy(current_bucket->value, value, hashmap->value_size);
+				if(hashmap->value_size == 0) {
+					size_t str_size;
+					str_size = strlen(value) + 1;
+					free(current_bucket->value);
+					current_bucket->value = malloc(str_size);
+					if(current_bucket->value == NULL) return CDS_ERR_OOM;
+					memcpy(current_bucket->value, value, str_size);
+				} else {
+					memcpy(current_bucket->value, value, hashmap->value_size);
+				}
 				free(hash_node);
 				free(node_key);
 				free(node_value);
@@ -188,7 +213,16 @@ cds_err_t insertToHashMap(hashmap_t *hashmap, void *key, void *value) {
 		}
 		if(!found) {
 			if(keycmp(hashmap, current_bucket->key, key)) {
-				memcpy(current_bucket->value, value, hashmap->value_size);
+				if(hashmap->value_size == 0) {
+					size_t str_size;
+					str_size = strlen(value) + 1;
+					free(current_bucket->value);
+					current_bucket->value = malloc(str_size);
+					if(current_bucket->value == NULL) return CDS_ERR_OOM;
+					memcpy(current_bucket->value, value, str_size);
+				} else {
+					memcpy(current_bucket->value, value, hashmap->value_size);
+				}
 				found = 1;
 				free(hash_node);
 				free(node_key);
@@ -199,7 +233,7 @@ cds_err_t insertToHashMap(hashmap_t *hashmap, void *key, void *value) {
 			}
 		}
 	}
-	if (hashmap->len * 10 > hashmap->len * 7) {
+	if (hashmap->len * 10 > hashmap->cap * 7) {
 		resizeHashMap(hashmap);
 	}
 	return CDS_OK;
