@@ -33,9 +33,9 @@ env.c         environment variable table and $VAR expansion
 - Built-ins:
   - [x] `cd`
   - [x] `pwd`
-  - [ ] `export`
+  - [x] `export`
   - [ ] `unset`
-- [ ] `$VAR` expansion in the lexer
+- [x] `$VAR` expansion in the lexer
 - [ ] Inherit and manage the environment table (hash map)
 
 ### Milestone 3 — Pipelines

@@ -1,4 +1,5 @@
 #include "lexer.h"
+#include <stdlib.h>
 #include <string.h>
 
 void lexer(char *input, char **argv) {
@@ -9,6 +10,12 @@ void lexer(char *input, char **argv) {
 		if (token == NULL) {
 			argv[i] = NULL;
 			break;
+		}
+		if (token[0] == '$') {
+			token = getenv(token+1);
+			if(token == NULL) {
+				token = "";
+			}
 		}
 		argv[i] = token;
 	}

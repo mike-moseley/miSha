@@ -23,8 +23,11 @@ CMakeFiles/test_example.dir/src/builtins.c.o: /home/mike/projects/C/miSHa/src/bu
   /home/mike/projects/C/miSHa/include/builtins.h \
   /home/mike/projects/C/miSHa/include/consts.h \
   /usr/include/bits/confname.h \
+  /usr/include/bits/environments.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/long-double.h \
   /usr/include/bits/posix_opt.h \
@@ -249,7 +252,9 @@ CMakeFiles/test_example.dir/test/unity/unity.c.o: /home/mike/projects/C/miSHa/te
 
 /usr/include/sys/types.h:
 
-/usr/include/bits/stdio_lim.h:
+/usr/include/bits/mathcalls-helper-functions.h:
+
+/usr/include/bits/types/time_t.h:
 
 /home/mike/projects/C/miSHa/test/unity/unity.c:
 
@@ -261,7 +266,13 @@ CMakeFiles/test_example.dir/test/unity/unity.c.o: /home/mike/projects/C/miSHa/te
 
 /usr/include/bits/libc-header-start.h:
 
+/usr/include/bits/getopt_posix.h:
+
 /usr/include/bits/floatn.h:
+
+/usr/include/bits/environments.h:
+
+/usr/lib/libc.so.6:
 
 /usr/include/bits/long-double.h:
 
@@ -297,10 +308,6 @@ CMakeFiles/test_example.dir/src/lexer.c.o:
 
 /usr/lib/Scrt1.o:
 
-/usr/include/string.h:
-
-/usr/include/bits/time64.h:
-
 CMakeFiles/test_example.dir/test/test_example.c.o:
 
 /usr/include/bits/unistd_ext.h:
@@ -308,6 +315,14 @@ CMakeFiles/test_example.dir/test/test_example.c.o:
 /usr/include/bits/stdint-intn.h:
 
 /home/mike/projects/C/miSHa/include/builtins.h:
+
+/home/mike/projects/C/miSHa/test/unity/unity.h:
+
+/usr/lib/libc_nonshared.a:
+
+/usr/include/bits/getopt_core.h:
+
+/usr/include/bits/types.h:
 
 /usr/include/bits/fp-fast.h:
 
@@ -318,10 +333,6 @@ CMakeFiles/test_example.dir/test/test_example.c.o:
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o:
 
 /usr/include/bits/types/FILE.h:
-
-/usr/include/bits/stdlib-float.h:
-
-/usr/include/bits/types/__FILE.h:
 
 /usr/lib/libgcc_s.so:
 
@@ -339,13 +350,15 @@ CMakeFiles/test_example.dir/test/test_example.c.o:
 
 CMakeFiles/test_example.dir/src/builtins.c.o:
 
-/usr/lib/libc.so.6:
+/usr/include/bits/stdio_lim.h:
 
-/home/mike/projects/C/miSHa/test/unity/unity.h:
+/usr/include/bits/types/__FILE.h:
 
-/usr/include/bits/types.h:
+/usr/include/bits/stdlib-float.h:
 
-/usr/lib/libc_nonshared.a:
+/usr/include/string.h:
+
+/usr/include/bits/time64.h:
 
 /usr/include/bits/types/__fpos64_t.h:
 
@@ -384,10 +397,6 @@ CMakeFiles/test_example.dir/src/builtins.c.o:
 /usr/include/stdio.h:
 
 /usr/include/stdlib.h:
-
-/usr/include/bits/mathcalls-helper-functions.h:
-
-/usr/include/bits/types/time_t.h:
 
 /home/mike/projects/C/miSHa/src/executor.c:
 

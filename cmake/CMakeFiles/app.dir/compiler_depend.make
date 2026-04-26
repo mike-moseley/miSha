@@ -22,8 +22,11 @@ CMakeFiles/app.dir/src/builtins.c.o: /home/mike/projects/C/miSHa/src/builtins.c 
   /home/mike/projects/C/miSHa/include/builtins.h \
   /home/mike/projects/C/miSHa/include/consts.h \
   /usr/include/bits/confname.h \
+  /usr/include/bits/environments.h \
   /usr/include/bits/floatn-common.h \
   /usr/include/bits/floatn.h \
+  /usr/include/bits/getopt_core.h \
+  /usr/include/bits/getopt_posix.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/long-double.h \
   /usr/include/bits/posix_opt.h \
@@ -154,6 +157,8 @@ CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
 
 /usr/include/sys/types.h:
 
+/usr/include/bits/waitflags.h:
+
 /usr/include/bits/stdio_lim.h:
 
 /usr/include/bits/posix_opt.h:
@@ -166,15 +171,19 @@ CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
 
 /usr/include/bits/libc-header-start.h:
 
+/usr/include/bits/getopt_posix.h:
+
 /usr/include/bits/floatn.h:
+
+/usr/include/bits/environments.h:
+
+/usr/lib/libc.so.6:
 
 /usr/include/bits/confname.h:
 
 /usr/include/bits/long-double.h:
 
 /home/mike/projects/C/miSHa/include/consts.h:
-
-/usr/include/bits/waitflags.h:
 
 /usr/include/bits/floatn-common.h:
 
@@ -192,15 +201,17 @@ CMakeFiles/app.dir/src/main.c.o:
 
 /home/mike/projects/C/miSHa/include/builtins.h:
 
+/usr/lib/libc_nonshared.a:
+
+/usr/include/bits/getopt_core.h:
+
+/usr/include/bits/types.h:
+
 /usr/lib/libc.so:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtendS.o:
 
 /usr/include/bits/types/FILE.h:
-
-/usr/include/bits/stdlib-float.h:
-
-/usr/include/bits/types/__FILE.h:
 
 /usr/lib/libgcc_s.so:
 
@@ -218,11 +229,9 @@ CMakeFiles/app.dir/src/builtins.c.o:
 
 /usr/lib/ld-linux-x86-64.so.2:
 
-/usr/lib/libc.so.6:
+/usr/include/bits/types/__FILE.h:
 
-/usr/include/bits/types.h:
-
-/usr/lib/libc_nonshared.a:
+/usr/include/bits/stdlib-float.h:
 
 CMakeFiles/app.dir/src/executor.c.o:
 
