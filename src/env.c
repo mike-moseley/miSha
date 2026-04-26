@@ -3,9 +3,8 @@
 #include "hash_map.h"
 #include <stdio.h>
 #include <string.h>
+#include "consts.h"
 
-#define INITIAL_MAP_SIZE 64
-#define ENVIRON_BUF 1024
 
 hashmap_t *envMap;
 extern char **environ;

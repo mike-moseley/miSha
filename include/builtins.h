@@ -13,7 +13,8 @@ typedef enum{
 	BUILTIN_CD,
 	BUILTIN_PWD,
 	BUILTIN_EXPORT,
-	BUILTIN_UNSET
+	BUILTIN_UNSET,
+	BUILTIN_HISTORY
 } BuiltinCommmands;
 
 BuiltinCode handle_builtins(char **argv);

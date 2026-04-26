@@ -1,4 +1,5 @@
 #include "cds_types.h"
+#include "history.h"
 #define _POSIX_C_SOURCE 200112L
 #include "builtins.h"
 #include <stdio.h>
@@ -17,6 +18,8 @@ BuiltinCommmands get_builtin_command(char *command) {
 		return BUILTIN_EXPORT;
 	} else if (strcmp("unset", command) == 0) {
 		return BUILTIN_UNSET;
+	} else if (strcmp("history", command) == 0){
+		return BUILTIN_HISTORY;
 	} else if (strcmp("exit", command) == 0) {
 		return BUILTIN_EXIT;
 	} else {
@@ -86,6 +89,10 @@ BuiltinCode builtin_unset(char **argv) {
 	return BUILTIN_OK;
 }
 
+void builtin_history(void) {
+	printHistory();
+}
+
 BuiltinCode handle_builtins(char **argv) {
 	char *command;
 	BuiltinCommmands builtin;
@@ -103,6 +110,9 @@ BuiltinCode handle_builtins(char **argv) {
 			return builtin_export(argv);
 		case BUILTIN_UNSET:
 			return builtin_unset(argv);
+		case BUILTIN_HISTORY:
+			builtin_history();
+			return BUILTIN_OK;
 		case BUILTIN_NOT_FOUND:
 			return NOT_BUILTIN;
 		default:

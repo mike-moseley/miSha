@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include "history.h"
 #include "lexer.h"
 #include "executor.h"
 #include "builtins.h"
@@ -11,7 +12,9 @@ int main(void) {
 	char buf[BUF_SIZE];
 	char *argv[MAX_ARGS];
 	BuiltinCode builtin_code;
+
 	initEnv();
+	initHistory();
 
 	while(1) {
 		printf("$ ");
@@ -23,6 +26,7 @@ int main(void) {
 
 		if(buf[0] == '\0') continue;
 
+		pushHistory(buf);
 		lexer(buf, argv);
 		builtin_code = handle_builtins(argv);
 		if (builtin_code == NOT_BUILTIN) {
