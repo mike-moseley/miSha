@@ -13,10 +13,46 @@
   /usr/lib/ld-linux-x86-64.so.2 \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
+  CMakeFiles/test_example.dir/src/builtins.c.o \
   CMakeFiles/test_example.dir/src/executor.c.o \
   CMakeFiles/test_example.dir/src/lexer.c.o \
   CMakeFiles/test_example.dir/test/test_example.c.o \
   CMakeFiles/test_example.dir/test/unity/unity.c.o
+
+CMakeFiles/test_example.dir/src/builtins.c.o: /home/mike/projects/C/miSHa/src/builtins.c \
+  /home/mike/projects/C/miSHa/include/builtins.h \
+  /usr/include/bits/confname.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/posix_opt.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/unistd_ext.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdio.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/unistd.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
 
 CMakeFiles/test_example.dir/src/executor.c.o: /home/mike/projects/C/miSHa/src/executor.c \
   /home/mike/projects/C/miSHa/include/executor.h \
@@ -202,15 +238,17 @@ CMakeFiles/test_example.dir/test/unity/unity.c.o: /home/mike/projects/C/miSHa/te
 
 /usr/include/bits/flt-eval-method.h:
 
-/home/mike/projects/C/miSHa/test/unity/unity_internals.h:
-
 /usr/include/setjmp.h:
 
 /home/mike/projects/C/miSHa/test/test_example.c:
 
-/usr/include/bits/stdio_lim.h:
+/home/mike/projects/C/miSHa/src/lexer.c:
 
-/usr/include/bits/stdint-intn.h:
+/usr/include/sys/wait.h:
+
+/usr/include/sys/types.h:
+
+/usr/include/bits/stdio_lim.h:
 
 /home/mike/projects/C/miSHa/test/unity/unity.c:
 
@@ -226,15 +264,19 @@ CMakeFiles/test_example.dir/test/unity/unity.c.o: /home/mike/projects/C/miSHa/te
 
 /usr/include/bits/floatn.h:
 
-/home/mike/projects/C/miSHa/include/executor.h:
-
-/usr/include/bits/types/__fpos64_t.h:
-
-/usr/include/features-time64.h:
-
 /usr/include/bits/floatn-common.h:
 
-/home/mike/projects/C/miSHa/src/executor.c:
+/home/mike/projects/C/miSHa/test/unity/unity_internals.h:
+
+/home/mike/projects/C/miSHa/src/builtins.c:
+
+/usr/include/bits/confname.h:
+
+/usr/include/bits/posix_opt.h:
+
+CMakeFiles/test_example.dir/src/executor.c.o:
+
+/usr/include/bits/typesizes.h:
 
 /usr/include/bits/stdint-uintn.h:
 
@@ -246,8 +288,6 @@ CMakeFiles/test_example.dir/src/lexer.c.o:
 
 /usr/lib/crtn.o:
 
-/usr/include/sys/wait.h:
-
 /usr/lib/Scrt1.o:
 
 /usr/include/string.h:
@@ -258,9 +298,9 @@ CMakeFiles/test_example.dir/test/test_example.c.o:
 
 /usr/include/bits/unistd_ext.h:
 
-/usr/lib/crti.o:
+/usr/include/bits/stdint-intn.h:
 
-/usr/include/unistd.h:
+/home/mike/projects/C/miSHa/include/builtins.h:
 
 /usr/include/bits/fp-fast.h:
 
@@ -284,23 +324,27 @@ CMakeFiles/test_example.dir/test/test_example.c.o:
 
 /usr/lib/libgcc_s.so.1:
 
-/usr/include/bits/confname.h:
-
-/usr/include/bits/posix_opt.h:
-
-CMakeFiles/test_example.dir/src/executor.c.o:
-
-/usr/include/bits/typesizes.h:
-
 /usr/lib/ld-linux-x86-64.so.2:
+
+/usr/lib/crti.o:
+
+/usr/include/unistd.h:
+
+CMakeFiles/test_example.dir/src/builtins.c.o:
 
 /usr/lib/libc.so.6:
 
 /home/mike/projects/C/miSHa/test/unity/unity.h:
 
+/usr/include/bits/types.h:
+
 /usr/lib/libc_nonshared.a:
 
-/usr/include/bits/types.h:
+/usr/include/bits/types/__fpos64_t.h:
+
+/usr/include/features-time64.h:
+
+/home/mike/projects/C/miSHa/include/executor.h:
 
 /usr/include/bits/math-vector.h:
 
@@ -312,17 +356,9 @@ CMakeFiles/test_example.dir/src/executor.c.o:
 
 /usr/include/bits/types/__mbstate_t.h:
 
-/usr/include/bits/types/clockid_t.h:
+/home/mike/projects/C/miSHa/include/lexer.h:
 
-/usr/include/bits/mathcalls-helper-functions.h:
-
-/usr/include/bits/types/time_t.h:
-
-/usr/include/stdlib.h:
-
-CMakeFiles/test_example.dir/test/unity/unity.c.o:
-
-/usr/include/bits/waitflags.h:
+/usr/include/bits/types/struct_FILE.h:
 
 /usr/include/features.h:
 
@@ -340,10 +376,16 @@ CMakeFiles/test_example.dir/test/unity/unity.c.o:
 
 /usr/include/stdio.h:
 
-/usr/include/sys/types.h:
+/usr/include/stdlib.h:
 
-/home/mike/projects/C/miSHa/src/lexer.c:
+/usr/include/bits/mathcalls-helper-functions.h:
 
-/usr/include/bits/types/struct_FILE.h:
+/usr/include/bits/types/time_t.h:
 
-/home/mike/projects/C/miSHa/include/lexer.h:
+/home/mike/projects/C/miSHa/src/executor.c:
+
+/usr/include/bits/types/clockid_t.h:
+
+CMakeFiles/test_example.dir/test/unity/unity.c.o:
+
+/usr/include/bits/waitflags.h:

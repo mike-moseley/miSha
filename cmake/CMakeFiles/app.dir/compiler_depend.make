@@ -13,9 +13,45 @@
   /usr/lib/ld-linux-x86-64.so.2 \
   /usr/lib/libc.so.6 \
   /usr/lib/libc_nonshared.a \
+  CMakeFiles/app.dir/src/builtins.c.o \
   CMakeFiles/app.dir/src/executor.c.o \
   CMakeFiles/app.dir/src/lexer.c.o \
   CMakeFiles/app.dir/src/main.c.o
+
+CMakeFiles/app.dir/src/builtins.c.o: /home/mike/projects/C/miSHa/src/builtins.c \
+  /home/mike/projects/C/miSHa/include/builtins.h \
+  /usr/include/bits/confname.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
+  /usr/include/bits/libc-header-start.h \
+  /usr/include/bits/long-double.h \
+  /usr/include/bits/posix_opt.h \
+  /usr/include/bits/stdio_lim.h \
+  /usr/include/bits/stdlib-float.h \
+  /usr/include/bits/time64.h \
+  /usr/include/bits/timesize.h \
+  /usr/include/bits/types.h \
+  /usr/include/bits/types/FILE.h \
+  /usr/include/bits/types/__FILE.h \
+  /usr/include/bits/types/__fpos64_t.h \
+  /usr/include/bits/types/__fpos_t.h \
+  /usr/include/bits/types/__mbstate_t.h \
+  /usr/include/bits/types/struct_FILE.h \
+  /usr/include/bits/typesizes.h \
+  /usr/include/bits/unistd_ext.h \
+  /usr/include/bits/wordsize.h \
+  /usr/include/features-time64.h \
+  /usr/include/features.h \
+  /usr/include/gnu/stubs-64.h \
+  /usr/include/gnu/stubs.h \
+  /usr/include/stdc-predef.h \
+  /usr/include/stdio.h \
+  /usr/include/stdlib.h \
+  /usr/include/string.h \
+  /usr/include/sys/cdefs.h \
+  /usr/include/unistd.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stdarg.h \
+  /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
 
 CMakeFiles/app.dir/src/executor.c.o: /home/mike/projects/C/miSHa/src/executor.c \
   /home/mike/projects/C/miSHa/include/executor.h \
@@ -75,6 +111,7 @@ CMakeFiles/app.dir/src/lexer.c.o: /home/mike/projects/C/miSHa/src/lexer.c \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
 
 CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
+  /home/mike/projects/C/miSHa/include/builtins.h \
   /home/mike/projects/C/miSHa/include/executor.h \
   /home/mike/projects/C/miSHa/include/lexer.h \
   /usr/include/bits/floatn-common.h \
@@ -109,9 +146,13 @@ CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
 
 /home/mike/projects/C/miSHa/src/main.c:
 
-/usr/include/bits/stdio_lim.h:
+/home/mike/projects/C/miSHa/src/lexer.c:
 
-/usr/include/bits/stdint-intn.h:
+/usr/include/sys/wait.h:
+
+/home/mike/projects/C/miSHa/include/builtins.h:
+
+/usr/include/bits/stdio_lim.h:
 
 /usr/include/bits/posix_opt.h:
 
@@ -131,9 +172,11 @@ CMakeFiles/app.dir/src/main.c.o: /home/mike/projects/C/miSHa/src/main.c \
 
 /usr/include/bits/floatn-common.h:
 
-/home/mike/projects/C/miSHa/src/executor.c:
+/home/mike/projects/C/miSHa/src/builtins.c:
 
 /usr/lib/Scrt1.o:
+
+/usr/include/bits/stdint-intn.h:
 
 CMakeFiles/app.dir/src/main.c.o:
 
@@ -153,6 +196,8 @@ CMakeFiles/app.dir/src/main.c.o:
 
 /usr/lib/libgcc_s.so:
 
+CMakeFiles/app.dir/src/builtins.c.o:
+
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/crtbeginS.o:
 
 /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h:
@@ -163,8 +208,6 @@ CMakeFiles/app.dir/src/main.c.o:
 
 /usr/lib/crtn.o:
 
-/usr/include/sys/wait.h:
-
 /usr/lib/ld-linux-x86-64.so.2:
 
 /usr/lib/libc.so.6:
@@ -173,13 +216,13 @@ CMakeFiles/app.dir/src/main.c.o:
 
 /usr/lib/libc_nonshared.a:
 
-/home/mike/projects/C/miSHa/include/executor.h:
-
-/usr/include/features-time64.h:
+CMakeFiles/app.dir/src/executor.c.o:
 
 /usr/include/bits/types/__fpos64_t.h:
 
-CMakeFiles/app.dir/src/executor.c.o:
+/usr/include/features-time64.h:
+
+/home/mike/projects/C/miSHa/include/executor.h:
 
 CMakeFiles/app.dir/src/lexer.c.o:
 
@@ -189,11 +232,9 @@ CMakeFiles/app.dir/src/lexer.c.o:
 
 /usr/include/bits/types/__mbstate_t.h:
 
-/usr/include/bits/types/clockid_t.h:
+/home/mike/projects/C/miSHa/include/lexer.h:
 
-/usr/include/bits/types/time_t.h:
-
-/usr/include/stdlib.h:
+/usr/include/bits/types/struct_FILE.h:
 
 /usr/include/bits/typesizes.h:
 
@@ -202,8 +243,6 @@ CMakeFiles/app.dir/src/lexer.c.o:
 /usr/include/string.h:
 
 /usr/include/bits/unistd_ext.h:
-
-/usr/include/bits/waitflags.h:
 
 /usr/include/features.h:
 
@@ -219,10 +258,14 @@ CMakeFiles/app.dir/src/lexer.c.o:
 
 /usr/include/stdio.h:
 
+/usr/include/stdlib.h:
+
+/usr/include/bits/types/time_t.h:
+
+/home/mike/projects/C/miSHa/src/executor.c:
+
+/usr/include/bits/types/clockid_t.h:
+
+/usr/include/bits/waitflags.h:
+
 /usr/include/sys/types.h:
-
-/home/mike/projects/C/miSHa/src/lexer.c:
-
-/usr/include/bits/types/struct_FILE.h:
-
-/home/mike/projects/C/miSHa/include/lexer.h:

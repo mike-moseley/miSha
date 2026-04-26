@@ -11,7 +11,7 @@
 int main(void) {
 	char buf[BUF_SIZE];
 	char *argv[MAX_ARGS];
-	enum builtin_codes builtin_code;
+	BuiltinCode builtin_code;
 
 	while(1) {
 		printf("$ ");
