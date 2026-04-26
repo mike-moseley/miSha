@@ -13,6 +13,8 @@ BuiltinCommmands get_builtin_command(char *command) {
 		return BUILTIN_PWD;
 	} else if (strcmp("export", command) == 0) {
 		return BUILTIN_EXPORT;
+	} else if (strcmp("unset", command) == 0) {
+		return BUILTIN_UNSET;
 	} else if (strcmp("exit", command) == 0) {
 		return BUILTIN_EXIT;
 	} else {
@@ -48,7 +50,7 @@ BuiltinCode builtin_export(char **argv) {
 	char *key;
 	char *value;
 	if (argv[1] == NULL || *argv[1] == '\0') {
-		puts("Please provide environment variable in this syntax `export KEY=value`");
+		puts("Please provide environment variable in this syntax `export $KEY=value`");
 		return BUILTIN_FAILED;
 	}
 	delimit_ptr = strchr(argv[1],'=');
@@ -63,6 +65,20 @@ BuiltinCode builtin_export(char **argv) {
 		perror("setenv in builtin_export in builtins.c");
 		return BUILTIN_FAILED;
 	}
+	return BUILTIN_OK;
+}
+
+BuiltinCode builtin_unset(char **argv) {
+	if (argv[1] == NULL || *argv[1] == '\0') {
+		puts("Please provide environment variable in this syntax `unset KEY`");
+		return BUILTIN_FAILED;
+	}
+
+	if(unsetenv(argv[1]) == -1) {
+		perror("unsetenv in builtin_unset in builtins.c");
+		return BUILTIN_FAILED;
+	}
+
 	return BUILTIN_OK;
 }
 
@@ -81,6 +97,8 @@ BuiltinCode handle_builtins(char **argv) {
 			return builtin_pwd();
 		case BUILTIN_EXPORT:
 			return builtin_export(argv);
+		case BUILTIN_UNSET:
+			return builtin_unset(argv);
 		case BUILTIN_NOT_FOUND:
 			return NOT_BUILTIN;
 		default:

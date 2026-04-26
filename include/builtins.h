@@ -12,7 +12,8 @@ typedef enum{
 	BUILTIN_EXIT,
 	BUILTIN_CD,
 	BUILTIN_PWD,
-	BUILTIN_EXPORT
+	BUILTIN_EXPORT,
+	BUILTIN_UNSET
 } BuiltinCommmands;
 
 BuiltinCode handle_builtins(char **argv);

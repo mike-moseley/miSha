@@ -102,8 +102,11 @@ CMakeFiles/test_example.dir/src/executor.c.o: /home/mike/projects/C/miSHa/src/ex
 
 CMakeFiles/test_example.dir/src/lexer.c.o: /home/mike/projects/C/miSHa/src/lexer.c \
   /home/mike/projects/C/miSHa/include/lexer.h \
+  /usr/include/bits/floatn-common.h \
+  /usr/include/bits/floatn.h \
   /usr/include/bits/libc-header-start.h \
   /usr/include/bits/long-double.h \
+  /usr/include/bits/stdlib-float.h \
   /usr/include/bits/timesize.h \
   /usr/include/bits/wordsize.h \
   /usr/include/features-time64.h \
@@ -111,6 +114,7 @@ CMakeFiles/test_example.dir/src/lexer.c.o: /home/mike/projects/C/miSHa/src/lexer
   /usr/include/gnu/stubs-64.h \
   /usr/include/gnu/stubs.h \
   /usr/include/stdc-predef.h \
+  /usr/include/stdlib.h \
   /usr/include/string.h \
   /usr/include/sys/cdefs.h \
   /usr/lib/gcc/x86_64-pc-linux-gnu/15.2.1/include/stddef.h
