@@ -21,6 +21,8 @@ int readline_raw(char *buf, size_t size) {
 	size_t history_idx;
 	history_idx = getHistoryLen();
 
+	writePrompt();
+
 	if(buf == NULL) {
 			fprintf(stderr, "ERROR: readline_raw in input.c\n");
 			fprintf(stderr, "  buf is NULL\n");
@@ -73,7 +75,7 @@ int readline_raw(char *buf, size_t size) {
 						step = 1;
 					}
 
-					if (step != 0) {
+					if (step != 0 && getHistoryLen() != 0) {
 						clearLine();
 						writePrompt();
 

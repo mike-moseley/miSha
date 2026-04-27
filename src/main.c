@@ -1,4 +1,3 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
 #include "history.h"
@@ -21,9 +20,6 @@ int main(void) {
 	atexit(restoreTerminal);
 
 	while(1) {
-		printf("$ ");
-		fflush(stdout);
-
 		if(readline_raw(buf, sizeof(buf)) == -1) break;
 
 		if(buf[0] == '\0') continue;

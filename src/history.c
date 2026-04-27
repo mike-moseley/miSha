@@ -27,6 +27,7 @@ char *getHistoryEntry(size_t idx) {
 
 size_t traverseHistoryIdx(size_t idx, int step) {
 	if(history == NULL) return SIZE_MAX;
+	if(history->len == 0) return SIZE_MAX;
 	/* Ensures negative step cannot underflow unnoticed */
 	if(step < 0 && -step > (int)history->len) return SIZE_MAX;
 	return ((int)idx + step + history->len) % history->len;
