@@ -1,5 +1,7 @@
 # miSHa
 
+This branch is a bit silly, just allocatin buf and argv in an arena to use one of my allocators.
+
 A basic Unix shell written in C90, built with CMake.
 Uses custom data structures and allocators from sibling projects:
 [c-data-structures](https://github.com/mike-moseley/c-data-structures) | [my-alloc](https://github.com/mike-moseley/my-alloc)

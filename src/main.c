@@ -1,6 +1,7 @@
-#include <stdio.h>
 #include <stdlib.h>
 #include <termios.h>
+#include "alloc_error.h"
+#include "arena.h"
 #include "history.h"
 #include "input.h"
 #include "lexer.h"
@@ -9,10 +10,24 @@
 #include "consts.h"
 #include "env.h"
 
+arena_t *command_mem;
+
+void cleanupArena(void) {
+	arenaDestroy(command_mem);
+}
+
 int main(void) {
-	char buf[BUF_SIZE];
-	char *argv[MAX_ARGS];
+	char *buf;
+	char **argv;
 	BuiltinCode builtin_code;
+	AllocError alloc_err;
+
+	alloc_err = arenaCreate(BUF_SIZE * MAX_ARGS, &command_mem);
+	atexit(cleanupArena);
+
+	if (alloc_err != ALLOC_OK) {
+		return -1;
+	}
 
 	initEnv();
 	initHistory();
@@ -21,10 +36,11 @@ int main(void) {
 	atexit(restoreTerminal);
 
 	while(1) {
-		printf("$ ");
-		fflush(stdout);
+		arenaReset(command_mem);
+		arenaAlloc(command_mem, BUF_SIZE, (void *)&buf);
+		arenaAlloc(command_mem, MAX_ARGS * sizeof(char *), (void **)&argv);
 
-		if(readline_raw(buf, sizeof(buf)) == -1) break;
+		if(readline_raw(buf, BUF_SIZE) == -1) break;
 
 		if(buf[0] == '\0') continue;
 
