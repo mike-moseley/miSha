@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <termios.h>
 #include "history.h"
+#include "input.h"
 #include "lexer.h"
 #include "executor.h"
 #include "builtins.h"
@@ -16,13 +17,14 @@ int main(void) {
 	initEnv();
 	initHistory();
 
+	enableRawMode();
+	atexit(restoreTerminal);
+
 	while(1) {
 		printf("$ ");
 		fflush(stdout);
 
-		if(fgets(buf, sizeof(buf), stdin) == NULL) break;
-
-		buf[strcspn(buf, "\n")] = '\0';
+		if(readline_raw(buf, sizeof(buf)) == -1) break;
 
 		if(buf[0] == '\0') continue;
 

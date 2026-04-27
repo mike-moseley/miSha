@@ -48,5 +48,5 @@ env.c         environment variable table and $VAR expansion
 
 ### Milestone 5 — Quality of life
 - [ ] Background jobs with `&`
-- [ ] Command history (ring buffer)
-- [ ] `Ctrl-C` handling (`SIGINT`)
+- [x] Command history (ring buffer)
+- [x] `Ctrl-C` handling (`SIGINT`)

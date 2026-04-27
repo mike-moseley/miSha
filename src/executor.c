@@ -13,11 +13,11 @@ int execute(char **argv) {
 
 	switch(pid) {
 		case -1:
-			perror("fork in execute");
+			perror("\nfork in execute in executor.c\n");
 			exit(EXIT_FAILURE);
 		case 0:
 			execvp(argv[0], argv);
-			perror("execvp in execute");
+			perror("\nexecvp in execute in executor.c\n");
 			exit(EXIT_FAILURE);
 		default:
 			waitpid(pid, &status, 0);
