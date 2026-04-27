@@ -8,13 +8,6 @@
 
 static struct termios orig_term;
 
-void clearLine(void) {
-	write(STDOUT_FILENO, "\r\033[K", 4);
-}
-void writePrompt(void) {
-	write(STDOUT_FILENO, "$ ", 2);
-}
-
 int readline_raw(char *buf, size_t size) {
 	unsigned char c;
 	size_t buf_idx;
@@ -116,5 +109,12 @@ void disableRawMode(struct termios *term) {
 
 void restoreTerminal(void) {
 	disableRawMode(&orig_term);
+}
+
+void clearLine(void) {
+	write(STDOUT_FILENO, "\r\033[K", 4);
+}
+void writePrompt(void) {
+	write(STDOUT_FILENO, "$ ", 2);
 }
 
