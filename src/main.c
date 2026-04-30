@@ -1,33 +1,35 @@
 #include <stdlib.h>
 #include <termios.h>
-#include "alloc_error.h"
 #include "arena.h"
 #include "history.h"
 #include "input.h"
-#include "lexer.h"
 #include "executor.h"
+#include "parser.h"
 #include "builtins.h"
 #include "consts.h"
 #include "env.h"
+#include "pool.h"
 
-arena_t *command_mem;
+arena_t *parser_arena;
+pool_t *parser_pool;
 
-void cleanupArena(void) {
-	arenaDestroy(command_mem);
+void cleanupArenas(void) {
+	arenaDestroy(parser_arena);
+}
+
+void cleanupPools(void) {
+	poolDestroy(parser_pool);
 }
 
 int main(void) {
-	char *buf;
-	char **argv;
+	char buf[BUF_SIZE];
 	BuiltinCode builtin_code;
-	AllocError alloc_err;
+	command_t *cmd;
 
-	alloc_err = arenaCreate(BUF_SIZE * MAX_ARGS, &command_mem);
-	atexit(cleanupArena);
-
-	if (alloc_err != ALLOC_OK) {
-		return -1;
-	}
+	arenaCreate(MAX_ARGS * sizeof(char *) * PIPE_DEPTH, &parser_arena);
+	atexit(cleanupArenas);
+	poolCreate(MAX_ARGS, sizeof(command_t), &parser_pool);
+	atexit(cleanupPools);
 
 	initEnv();
 	initHistory();
@@ -36,20 +38,19 @@ int main(void) {
 	atexit(restoreTerminal);
 
 	while(1) {
-		arenaReset(command_mem);
-		arenaAlloc(command_mem, BUF_SIZE, (void *)&buf);
-		arenaAlloc(command_mem, MAX_ARGS * sizeof(char *), (void **)&argv);
-
 		if(readline_raw(buf, BUF_SIZE) == -1) break;
 
 		if(buf[0] == '\0') continue;
 
 		pushHistory(buf);
-		lexer(buf, argv);
-		builtin_code = handle_builtins(argv);
+		cmd = parseCommands(buf, parser_pool, parser_arena);
+		if (cmd == NULL) continue;
+		builtin_code = handle_builtins(cmd->argv);
 		if (builtin_code == NOT_BUILTIN) {
-			execute(argv);
+			execute(cmd->argv);
 		}
+		arenaReset(parser_arena);
+		poolReset(parser_pool);
 	}
 
 	return 0;
