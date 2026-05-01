@@ -23,8 +23,7 @@ CMake and a C compiler, I used gcc.
 
 ---
 
-## Quickstart
-## Usage
+## Quick Start and Usage
 
 Run
 ```bash
