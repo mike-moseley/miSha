@@ -34,7 +34,7 @@ cmake --build cmake
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 ### Clone the repo
 
