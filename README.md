@@ -9,6 +9,53 @@ Uses custom data structures and allocators from sibling projects:
 
 ---
 
+## Motivation
+
+Deepen understanding of C, shells, and linux system calls.
+
+---
+
+## Requirements
+
+CMake and a C compiler, I used gcc.
+
+---
+
+## Quickstart and Usage
+
+Run
+```bash
+cmake -S . -G "Unix Makefiles" -B cmake
+cmake --build cmake
+./bin/miSHa
+```
+
+---
+
+## 🤝 Contributing
+
+### Clone the repo
+
+```bash
+git clone https://github.com/mike-moseley/miSHa@latest
+cd miSHa
+```
+
+### Build and run
+
+```bash
+cmake -S . -G "Unix Makefiles" -B cmake
+cmake --build cmake
+./bin/miSHa
+```
+
+### Submit a pull request
+
+If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
+
+---
+
+
 ## Architecture
 
 ```
@@ -50,6 +97,7 @@ env.c         environment variable table and $VAR expansion
 ### Milestone 5 — Quality of life
 - [ ] Background jobs with `&`
 - [x] Command history (ring buffer)
+- [ ] Navigating input
 - [x] `Ctrl-C` handling (`SIGINT`)
 
 ### Todo
