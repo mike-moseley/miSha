@@ -1,3 +1,11 @@
+# Submitting this as finished project for boot.dev capstone.
+Will continue working on it as I have learned a ton and it has been very
+interesting, but I have implemented what I set out to do. I built up data 
+structures and allocators to learn more about C and memory management.
+I then took those libraries and implemented a working shell using some parts
+of both those projects. I still have a lot more to learn about all these topics
+, but I feel good about submitting this project as it stands.
+
 # miSHa
 
 A basic Unix shell written in C90, built with CMake.
@@ -51,3 +59,6 @@ env.c         environment variable table and $VAR expansion
 - [ ] Background jobs with `&`
 - [x] Command history (ring buffer)
 - [x] `Ctrl-C` handling (`SIGINT`)
+
+### Todo
+- [ ] Reorganize src and include directories especially outside libraries
