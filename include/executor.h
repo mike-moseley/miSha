@@ -1,6 +1,7 @@
 #ifndef EXECUTOR_H
 #define EXECUTOR_H
 
-int execute(char **argv);
+#include "parser.h"
+int execute(command_t *cmd);
 
 #endif

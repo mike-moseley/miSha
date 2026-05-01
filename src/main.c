@@ -47,7 +47,7 @@ int main(void) {
 		if (cmd == NULL) continue;
 		builtin_code = handle_builtins(cmd->argv);
 		if (builtin_code == NOT_BUILTIN) {
-			execute(cmd->argv);
+			execute(cmd);
 		}
 		arenaReset(parser_arena);
 		poolReset(parser_pool);

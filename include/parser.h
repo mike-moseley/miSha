@@ -9,6 +9,6 @@ typedef struct Command{
 	char **argv;
 } command_t;
 
-#endif
-
 command_t *parseCommands(char *input, pool_t *pool, arena_t *arena);
+
+#endif
