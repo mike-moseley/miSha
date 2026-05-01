@@ -10,9 +10,9 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY ${CMAKE_SOURCE_DIR}/bin)
 file(GLOB_RECURSE sources
 		"${CMAKE_SOURCE_DIR}/src/*.c"
 )
-add_executable(app ${sources})
-target_include_directories(app PRIVATE "${CMAKE_SOURCE_DIR}/include")
-target_compile_options(app PRIVATE -Wall -Wextra -g -pedantic)
+add_executable(miSHa ${sources})
+target_include_directories(miSHa PRIVATE "${CMAKE_SOURCE_DIR}/include")
+target_compile_options(miSHa PRIVATE -Wall -Wextra -g -pedantic)
 
 # Unity testing
 enable_testing()

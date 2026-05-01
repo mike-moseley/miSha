@@ -27,6 +27,7 @@ int execute(command_t *cmd) {
 			exit(EXIT_FAILURE);
 		default:
 			waitpid(pid, &status, 0);
+			enableRawMode();
 			return status;
 		}
 	} else {
@@ -66,6 +67,7 @@ int execute(command_t *cmd) {
 				close(pipefd[1]);
 				waitpid(lhs_pid, &status, 0);
 				waitpid(rhs_pid, &status, 0);
+				enableRawMode();
 				return status;
 			}
 		}
