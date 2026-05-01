@@ -5,6 +5,8 @@ A basic Unix shell written in C90, built with CMake.
 Uses custom data structures and allocators from sibling projects:
 [c-data-structures](https://github.com/mike-moseley/c-data-structures) | [my-alloc](https://github.com/mike-moseley/my-alloc)
 
+https://github.com/user-attachments/assets/9f5788aa-75ab-4e3c-9497-5565f08e55dc
+
 *Outline and roadmap written, and general guidance provided by Claude (claude.ai/code).*
 
 ---
