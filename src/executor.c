@@ -1,4 +1,5 @@
 #include "executor.h"
+#include "input.h"
 #include "parser.h"
 #include <stdio.h>
 #include <stdlib.h>
@@ -19,6 +20,7 @@ int execute(command_t *cmd) {
 			perror("\nfork in non-pipe execute in executor.c\n");
 			exit(EXIT_FAILURE);
 		case 0:
+			restoreTerminal();
 			execvp(cmd->argv[0], cmd->argv);
 			/* Only reachable if execvp fails */
 			perror("\nexecvp in non-pipe execute in executor.c\n");
@@ -38,6 +40,7 @@ int execute(command_t *cmd) {
 			perror("\nfork in pipe execute");
 			exit(EXIT_FAILURE);
 		case 0:
+			restoreTerminal();
 			dup2(pipefd[1], STDOUT_FILENO);
 			close(pipefd[0]);
 			close(pipefd[1]);
@@ -52,6 +55,7 @@ int execute(command_t *cmd) {
 				perror("\nfork in pipe execute");
 				exit(EXIT_FAILURE);
 			case 0:
+				restoreTerminal();
 				dup2(pipefd[0], STDIN_FILENO);
 				close(pipefd[0]);
 				close(pipefd[1]);
