@@ -13,5 +13,7 @@ void writePrompt(void);
 void clearLine(void);
 void moveCursorRight(void);
 void moveCursorLeft(void);
+void moveCursorRightN(int);
+void moveCursorLeftN(int);
 
 #endif

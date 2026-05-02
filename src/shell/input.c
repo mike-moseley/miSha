@@ -8,6 +8,7 @@
 #include <unistd.h>
 
 static struct termios orig_term;
+char null_term = '\0';
 
 int readline_raw(slice_t *input) {
 	unsigned char c;
@@ -24,6 +25,7 @@ int readline_raw(slice_t *input) {
 		switch(c) {
 		case 3: {
 			input_idx = 0;
+			input->len = 0;
 			clearLine();
 			write(STDOUT_FILENO, "Type `exit` to exit.\n", 21);
 			writePrompt();
@@ -36,8 +38,11 @@ int readline_raw(slice_t *input) {
 		case 127: {
 			if(input_idx > 0) {
 				input_idx--;
-				input->len--;
-				write(STDOUT_FILENO, "\b \b", 3);
+				removeElement(input, input_idx, NULL);
+				clearLine();
+				writePrompt();
+				write(STDOUT_FILENO, input->arr, input->len);
+				moveCursorLeftN(input->len - input_idx);
 			}
 			break;
 		}
@@ -52,15 +57,13 @@ int readline_raw(slice_t *input) {
 				} else if(arrow_buf[1] == 'B') {
 					step = 1;
 				} else if(arrow_buf[1] == 'C') {
-					if(input_idx < input->len ) {
+					if(input_idx < input->len) {
 						input_idx++;
-						input->len++;
 						moveCursorRight();
 					}
 				} else if(arrow_buf[1] == 'D') {
 					if(input_idx > 0) {
 						input_idx--;
-						input->len--;
 						moveCursorLeft();
 					}
 				}
@@ -82,14 +85,22 @@ int readline_raw(slice_t *input) {
 		}
 		default: {
 			write(STDOUT_FILENO, &c, 1);
-			((char *)input->arr)[input_idx] = c;
+			if(input_idx == input->len) {
+				appendSlice(input, &c);
+			} else {
+				/* TODO: Only redraw what is necessary instead of whole line*/
+				insertToSlice(input, &c, input_idx);
+				clearLine();
+				writePrompt();
+				write(STDOUT_FILENO, input->arr, input->len);
+				moveCursorLeftN(input->len - input_idx - 1);
+			}
 			input_idx++;
-			input->len++;
 		}
 		}
 	} while(c != '\n');
 	write(STDOUT_FILENO, "\n", 1);
-	((char *)input->arr)[input_idx] = '\0';
+	appendSlice(input, &null_term);
 	return 0;
 }
 
@@ -111,4 +122,14 @@ void restoreTerminal(void) { disableRawMode(&orig_term); }
 void clearLine(void) { write(STDOUT_FILENO, "\r\033[K", 4); }
 void moveCursorLeft(void) { write(STDOUT_FILENO, "\033[1D", 5); }
 void moveCursorRight(void) { write(STDOUT_FILENO, "\033[1C", 5); }
+void moveCursorLeftN(int n) { 
+	char fstring[5];
+	sprintf(fstring, "\033[%dD", n);
+	write(STDOUT_FILENO, fstring, 5); 
+}
+void moveCursorRightN(int n) { 
+	char fstring[5];
+	sprintf(fstring, "\033[%dC", n);
+	write(STDOUT_FILENO, fstring, 5); 
+}
 void writePrompt(void) { write(STDOUT_FILENO, "$ ", 2); }

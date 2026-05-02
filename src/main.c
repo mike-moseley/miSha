@@ -35,7 +35,7 @@ int main(void) {
 	atexit(restoreTerminal);
 
 	while(1) {
-		input = createSlice(sizeof(char *), BUF_SIZE);
+		input = createSlice(sizeof(char), 0);
 		if(readline_raw(input) == -1) break;
 
 		if(((char *)input->arr)[0] == '\0') continue;

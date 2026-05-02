@@ -23,6 +23,7 @@ int execute(command_t *cmd) {
 			restoreTerminal();
 			execvp(cmd->argv[0], cmd->argv);
 			/* Only reachable if execvp fails */
+			puts(*cmd->argv);
 			perror("\nexecvp in non-pipe execute in executor.c\n");
 			exit(EXIT_FAILURE);
 		default:
