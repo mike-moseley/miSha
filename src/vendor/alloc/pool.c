@@ -1,6 +1,6 @@
-#include "pool.h"
-#include "alloc_error.h"
-#include "alloc_common.h"
+#include "vendor/alloc/pool.h"
+#include "vendor/alloc/alloc_error.h"
+#include "vendor/alloc/alloc_common.h"
 #include <sys/mman.h>
 
 typedef struct chunk_t chunk_t;

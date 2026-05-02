@@ -1,8 +1,8 @@
-#include "parser.h"
-#include "alloc_error.h"
-#include "arena.h"
-#include "consts.h"
-#include "lexer.h"
+#include "shell/parser.h"
+#include "vendor/alloc/alloc_error.h"
+#include "vendor/alloc/arena.h"
+#include "shell/consts.h"
+#include "shell/lexer.h"
 #include <string.h>
 
 command_t *parseCommands(char *input, pool_t *pool, arena_t *arena) {

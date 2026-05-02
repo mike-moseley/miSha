@@ -1,8 +1,8 @@
 #ifndef PARSER_H
 #define PARSER_H
 
-#include "arena.h"
-#include "pool.h"
+#include "vendor/alloc/arena.h"
+#include "vendor/alloc/pool.h"
 
 typedef struct Command{
 	struct Command *next;

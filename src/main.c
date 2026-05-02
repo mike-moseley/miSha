@@ -1,28 +1,25 @@
+#include "shell/builtins.h"
+#include "shell/consts.h"
+#include "shell/env.h"
+#include "shell/executor.h"
+#include "shell/history.h"
+#include "shell/input.h"
+#include "shell/parser.h"
+#include "vendor/alloc/arena.h"
+#include "vendor/alloc/pool.h"
+#include "vendor/data-structures/slice.h"
 #include <stdlib.h>
 #include <termios.h>
-#include "arena.h"
-#include "history.h"
-#include "input.h"
-#include "executor.h"
-#include "parser.h"
-#include "builtins.h"
-#include "consts.h"
-#include "env.h"
-#include "pool.h"
 
 arena_t *parser_arena;
 pool_t *parser_pool;
+slice_t *input;
 
-void cleanupArenas(void) {
-	arenaDestroy(parser_arena);
-}
+void cleanupArenas(void) { arenaDestroy(parser_arena); }
 
-void cleanupPools(void) {
-	poolDestroy(parser_pool);
-}
+void cleanupPools(void) { poolDestroy(parser_pool); }
 
 int main(void) {
-	char buf[BUF_SIZE];
 	BuiltinCode builtin_code;
 	command_t *cmd;
 
@@ -38,19 +35,21 @@ int main(void) {
 	atexit(restoreTerminal);
 
 	while(1) {
-		if(readline_raw(buf, BUF_SIZE) == -1) break;
+		input = createSlice(sizeof(char *), BUF_SIZE);
+		if(readline_raw(input) == -1) break;
 
-		if(buf[0] == '\0') continue;
+		if(((char *)input->arr)[0] == '\0') continue;
 
-		pushHistory(buf);
-		cmd = parseCommands(buf, parser_pool, parser_arena);
-		if (cmd == NULL) continue;
+		pushHistory((char *)input->arr);
+		cmd = parseCommands((char *)input->arr, parser_pool, parser_arena);
+		if(cmd == NULL) continue;
 		builtin_code = handle_builtins(cmd->argv);
-		if (builtin_code == NOT_BUILTIN) {
+		if(builtin_code == NOT_BUILTIN) {
 			execute(cmd);
 		}
 		arenaReset(parser_arena);
 		poolReset(parser_pool);
+		freeSlice(input, NULL);
 	}
 
 	return 0;

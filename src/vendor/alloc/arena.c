@@ -1,7 +1,7 @@
-#include "alloc_error.h"
+#include "vendor/alloc/alloc_error.h"
 #include "sys/mman.h"
-#include "arena.h"
-#include "alloc_common.h"
+#include "vendor/alloc/arena.h"
+#include "vendor/alloc/alloc_common.h"
 
 AllocError arenaCreate(size_t capacity, arena_t **out) {
 	arena_t *arena;

@@ -1,6 +1,6 @@
-#include "executor.h"
-#include "input.h"
-#include "parser.h"
+#include "shell/executor.h"
+#include "shell/input.h"
+#include "shell/parser.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>

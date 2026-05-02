@@ -1,7 +1,7 @@
-#include "history.h"
-#include "cds_types.h"
-#include "consts.h"
-#include "ring_buffer.h"
+#include "shell/history.h"
+#include "shell/consts.h"
+#include "vendor/data-structures/cds_types.h"
+#include "vendor/data-structures/ring_buffer.h"
 #include <stdint.h>
 #include <stdio.h>
 

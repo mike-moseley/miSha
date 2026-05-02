@@ -1,6 +1,6 @@
-#include "mmapAlloc.h"
-#include "alloc_common.h"
-#include "alloc_error.h"
+#include "vendor/alloc/mmapAlloc.h"
+#include "vendor/alloc/alloc_common.h"
+#include "vendor/alloc/alloc_error.h"
 #include <string.h>
 #include <sys/mman.h>
 

@@ -1,5 +1,5 @@
-#include "ring_buffer.h"
-#include "cds_types.h"
+#include "vendor/data-structures/ring_buffer.h"
+#include "vendor/data-structures/cds_types.h"
 #include <stdlib.h>
 #include <string.h>
 

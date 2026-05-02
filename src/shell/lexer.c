@@ -1,7 +1,7 @@
-#include "lexer.h"
 #include <stdlib.h>
 #include <string.h>
-#include "env.h"
+#include "shell/lexer.h"
+#include "shell/env.h"
 
 void lexer(char *input, char **argv) {
 	char *token, *str;

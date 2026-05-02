@@ -4,5 +4,6 @@ bin/
 .cache/
 notes.md
 resources.md
+journal.md
 .clangd
 .clang-format

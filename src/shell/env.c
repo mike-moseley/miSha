@@ -1,9 +1,9 @@
-#include "env.h"
-#include "cds_types.h"
-#include "hash_map.h"
+#include "vendor/data-structures/cds_types.h"
+#include "vendor/data-structures/hash_map.h"
 #include <stdio.h>
 #include <string.h>
-#include "consts.h"
+#include "shell/env.h"
+#include "shell/consts.h"
 
 
 hashmap_t *envMap;

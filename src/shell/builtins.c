@@ -1,13 +1,13 @@
-#include "cds_types.h"
-#include "history.h"
 #define _POSIX_C_SOURCE 200112L
-#include "builtins.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <unistd.h>
-#include "consts.h"
-#include "env.h"
+#include "shell/consts.h"
+#include "shell/env.h"
+#include "shell/history.h"
+#include "shell/builtins.h"
+#include "vendor/data-structures/cds_types.h"
 
 BuiltinCommmands get_builtin_command(char *command) {
 	if (strcmp("cd", command) == 0) {
