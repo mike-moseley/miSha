@@ -39,7 +39,7 @@ endfunction()
 
 # Add test targets to this list
 add_custom_target(tests DEPENDS
-	test_example
+	test_input
 )
 
-add_unity_test(test_example test/test_example.c)
+add_unity_test(test_input test/test_input.c)
