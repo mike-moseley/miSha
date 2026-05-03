@@ -51,13 +51,6 @@ cmake --build cmake
 ./bin/miSHa
 ```
 
-### Submit a pull request
-
-If you'd like to contribute, please fork the repository and open a pull request to the `main` branch.
-
----
-
-
 ## Architecture
 
 ```
@@ -99,8 +92,5 @@ env.c         environment variable table and $VAR expansion
 ### Milestone 5 — Quality of life
 - [ ] Background jobs with `&`
 - [x] Command history (ring buffer)
-- [ ] Navigating input
+- [x] Navigating input
 - [x] `Ctrl-C` handling (`SIGINT`)
-
-### Todo
-- [ ] Reorganize src and include directories especially outside libraries
