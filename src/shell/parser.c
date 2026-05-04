@@ -3,6 +3,7 @@
 #include "vendor/alloc/arena.h"
 #include "shell/consts.h"
 #include "shell/lexer.h"
+#include <stdio.h>
 #include <string.h>
 
 command_t *parseCommands(char *input, pool_t *pool, arena_t *arena) {
@@ -13,11 +14,17 @@ command_t *parseCommands(char *input, pool_t *pool, arena_t *arena) {
 
 	alloc_err = poolAlloc(pool,&ptr);
 	if (alloc_err != ALLOC_OK) {
+
+		perror("Pool allocation error in parseCommands in parser.c");
 		return NULL;
 	}
 	node = (command_t *)ptr;
 
 	alloc_err = arenaAlloc(arena, MAX_ARGS * sizeof(char *), (void **)&node->argv);
+	if (alloc_err != ALLOC_OK) {
+		perror("Arena allocation error in parseCommands in parser.c");
+		return NULL;
+	}
 
 	delimit = strchr(input,'|');
 	if(delimit == NULL) {

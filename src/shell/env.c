@@ -11,6 +11,7 @@ extern char **environ;
 
 cds_err_t initEnv(void) {
 	int i;
+	cds_err_t cds_err;
 	envMap = createHashMap(0, 0, INITIAL_MAP_SIZE);
 
 	for(i = 0; environ[i] != NULL; i++) {
@@ -36,10 +37,13 @@ cds_err_t initEnv(void) {
 		key = buf;
 		value = delimit_ptr + 1;
 
-		insertToHashMap(envMap, key, value);
+		cds_err = insertToHashMap(envMap, key, value);
+		if(cds_err != CDS_OK) {
+			return cds_err;
+		}
 	}
 	
-	return 0;
+	return CDS_OK;
 }
 
 char *getEnv(char *key) {
