@@ -42,8 +42,10 @@ add_custom_target(tests DEPENDS
 	test_input
 	test_lexer
 	test_parser
+	test_executor
 )
 
 add_unity_test(test_input test/test_input.c)
 add_unity_test(test_lexer test/test_lexer.c)
 add_unity_test(test_parser test/test_parser.c)
+add_unity_test(test_executor test/test_executor.c)

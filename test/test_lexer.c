@@ -8,7 +8,7 @@
 void setUp(void) {}
 void tearDown(void) {}
 
-void test_ok(void) {
+void test_single_command(void) {
 	char *argv[MAX_ARGS];
 	char input[] = "ls -la";
 	lexer(input, argv);
@@ -64,7 +64,7 @@ void test_undefined_env_var(void) {
 int main(void) {
 	initEnv();
 	UNITY_BEGIN();
-	RUN_TEST(test_ok);
+	RUN_TEST(test_single_command);
 	RUN_TEST(test_num_tokens);
 	RUN_TEST(test_empty);
 	RUN_TEST(test_whitespace);
