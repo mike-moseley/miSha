@@ -31,9 +31,18 @@ int readline_raw(slice_t *input) {
 			writePrompt();
 			break;
 		}
+		case 12: {
+				clearScreen();
+				writePrompt();
+				write(STDOUT_FILENO, input->arr, input->len);
+				moveCursorLeftN(input->len - input_idx);
+				break;
+		}
 		case '\n':
 			/* Continue to break out */
 			continue;
+
+		/* Backspace */
 		case '\b':
 		case 127: {
 			if(input_idx > 0) {
@@ -46,6 +55,8 @@ int readline_raw(slice_t *input) {
 			}
 			break;
 		}
+
+		/* Arrow Keys */
 		case 033: {
 			char arrow_buf[2];
 			int step;
@@ -120,16 +131,22 @@ void disableRawMode(struct termios *term) {
 void restoreTerminal(void) { disableRawMode(&orig_term); }
 
 void clearLine(void) { write(STDOUT_FILENO, "\r\033[K", 4); }
+void clearScreen(void) { write(STDOUT_FILENO, "\r\033[2J\033[H", 8); }
 void moveCursorLeft(void) { write(STDOUT_FILENO, "\033[1D", 5); }
 void moveCursorRight(void) { write(STDOUT_FILENO, "\033[1C", 5); }
-void moveCursorLeftN(int n) { 
+
+/* For moveCursorLeftN and moveCursorRightN n=0 is interpreted as
+ * n=1, so we return early to move none spaces*/
+void moveCursorLeftN(int n) {
 	char fstring[5];
+	if(n == 0) return;
 	sprintf(fstring, "\033[%dD", n);
-	write(STDOUT_FILENO, fstring, 5); 
+	write(STDOUT_FILENO, fstring, 5);
 }
-void moveCursorRightN(int n) { 
+void moveCursorRightN(int n) {
 	char fstring[5];
+	if(n == 0) return;
 	sprintf(fstring, "\033[%dC", n);
-	write(STDOUT_FILENO, fstring, 5); 
+	write(STDOUT_FILENO, fstring, 5);
 }
 void writePrompt(void) { write(STDOUT_FILENO, "$ ", 2); }

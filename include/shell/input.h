@@ -11,6 +11,7 @@ void disableRawMode(struct termios *termios_p);
 void restoreTerminal(void);
 void writePrompt(void);
 void clearLine(void);
+void clearScreen(void);
 void moveCursorRight(void);
 void moveCursorLeft(void);
 void moveCursorRightN(int);

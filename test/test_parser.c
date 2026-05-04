@@ -17,7 +17,7 @@ void tearDown(void) {
 	arenaDestroy(arena);
 }
 
-void test_single_command(void) {
+void test_single_command_success(void) {
 	char input[]="ls -la";
 	command_t *cmd;
 	cmd = parseCommands(input, pool, arena);
@@ -60,7 +60,7 @@ void test_triple_command(void) {
 int main(void)
 {
 	UNITY_BEGIN();
-	RUN_TEST(test_single_command);
+	RUN_TEST(test_single_command_success);
 	RUN_TEST(test_double_command);
 	RUN_TEST(test_triple_command);
 	return UNITY_END();
