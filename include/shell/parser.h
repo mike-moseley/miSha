@@ -7,6 +7,9 @@
 typedef struct Command{
 	struct Command *next;
 	char **argv;
+	char *redirect_in;
+	char *redirect_out;
+	int append;
 } command_t;
 
 command_t *parseCommands(char *input, pool_t *pool, arena_t *arena);

@@ -30,7 +30,7 @@ slice_t *createSlice(size_t element_size, size_t initial_len) {
 	return slice;
 }
 
-static cds_err_t growSlice(slice_t *slice) {
+cds_err_t growSlice(slice_t *slice) {
 	size_t new_cap;
 	void *new_arr;
 
@@ -63,6 +63,22 @@ cds_err_t appendSlice(slice_t *slice, void *data) {
 	memcpy((char *)slice->arr + (slice->len * slice->element_size), data,
 	       slice->element_size);
 	slice->len++;
+	return CDS_OK;
+}
+
+cds_err_t appendSliceArr(slice_t *slice, void **data_arr, size_t len) {
+	size_t i;
+	cds_err_t err;
+
+	if(slice==NULL) return CDS_ERR_NULL;
+	if(data_arr == NULL) return CDS_ERR_NULL;
+	for(i=0; i < len; i++) {
+		err = appendSlice(slice, data_arr[i]);
+		/* TODO: Improve this to roll back appends if we error */
+		if (err != CDS_OK) {
+			return err;
+		}
+	}
 	return CDS_OK;
 }
 

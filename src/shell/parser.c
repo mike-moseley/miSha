@@ -9,7 +9,7 @@
 command_t *parseCommands(char *input, pool_t *pool, arena_t *arena) {
 	char *delimit;
 	void *ptr;
-	command_t *node;
+	command_t *cmd;
 	AllocError alloc_err;
 
 	alloc_err = poolAlloc(pool,&ptr);
@@ -18,9 +18,11 @@ command_t *parseCommands(char *input, pool_t *pool, arena_t *arena) {
 		perror("Pool allocation error in parseCommands in parser.c");
 		return NULL;
 	}
-	node = (command_t *)ptr;
 
-	alloc_err = arenaAlloc(arena, MAX_ARGS * sizeof(char *), (void **)&node->argv);
+	cmd = (command_t *)ptr;
+	memset(cmd, 0, sizeof(command_t));
+
+	alloc_err = arenaAlloc(arena, MAX_ARGS * sizeof(char *), (void **)&cmd->argv);
 	if (alloc_err != ALLOC_OK) {
 		perror("Arena allocation error in parseCommands in parser.c");
 		return NULL;
@@ -28,12 +30,12 @@ command_t *parseCommands(char *input, pool_t *pool, arena_t *arena) {
 
 	delimit = strchr(input,'|');
 	if(delimit == NULL) {
-		lexer(input, node->argv);
-		node->next = NULL;
+		lexer(input, cmd);
+		cmd->next = NULL;
 	} else {
 		*delimit = '\0';
-		lexer(input, node->argv);
-		node->next = parseCommands(delimit+1, pool, arena);
+		lexer(input, cmd);
+		cmd->next = parseCommands(delimit+1, pool, arena);
 	}
-	return node;
+	return cmd;
 }

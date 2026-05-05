@@ -1,6 +1,7 @@
 #include "shell/executor.h"
 #include "shell/input.h"
 #include "shell/parser.h"
+#include <fcntl.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -14,6 +15,7 @@ int execute(command_t *cmd) {
 	if(cmd == NULL) return -1;
 
 	if(cmd->next == NULL) {
+		int redirect_fd;
 		pid = fork();
 		switch(pid) {
 		case -1:
@@ -21,6 +23,19 @@ int execute(command_t *cmd) {
 			exit(EXIT_FAILURE);
 		case 0:
 			restoreTerminal();
+			if(cmd->redirect_out != NULL) {
+				redirect_fd = open(cmd->redirect_out,
+				                   O_WRONLY | O_CREAT |
+				                       (cmd->append ? O_APPEND : O_TRUNC),
+				                   0644);
+				dup2(redirect_fd, STDOUT_FILENO);
+				close(redirect_fd);
+			}
+			if(cmd->redirect_in != NULL) {
+				redirect_fd = open(cmd->redirect_in, O_RDONLY);
+				dup2(redirect_fd, STDIN_FILENO);
+				close(redirect_fd);
+			}
 			execvp(cmd->argv[0], cmd->argv);
 			/* Only reachable if execvp fails */
 			perror("\nexecvp in non-pipe execute in executor.c\n");

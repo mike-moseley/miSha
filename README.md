@@ -86,7 +86,7 @@ env.c         environment variable table and $VAR expansion
 - [x] Executor: chain commands with `pipe(2)`, dup stdin/stdout
 
 ### Milestone 4 — Redirects
-- [ ] Parser: recognise `>`, `>>`, `<`
+- [x] Parser: recognise `>`, `>>`, `<`
 - [ ] Executor: open files and `dup2` onto stdin/stdout/stderr
 
 ### Milestone 5 — Quality of life

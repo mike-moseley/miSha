@@ -32,11 +32,11 @@ int readline_raw(slice_t *input) {
 			break;
 		}
 		case 12: {
-				clearScreen();
-				writePrompt();
-				write(STDOUT_FILENO, input->arr, input->len);
-				moveCursorLeftN(input->len - input_idx);
-				break;
+			clearScreen();
+			writePrompt();
+			write(STDOUT_FILENO, input->arr, input->len);
+			moveCursorLeftN(input->len - input_idx);
+			break;
 		}
 		case '\n':
 			/* Continue to break out */
@@ -80,12 +80,20 @@ int readline_raw(slice_t *input) {
 				}
 
 				if(step != 0 && getHistoryLen() != 0) {
+					const char *entry;
 					clearLine();
 					writePrompt();
 
 					history_idx = traverseHistoryIdx(history_idx, step);
 					if(history_idx == SIZE_MAX) return -1;
 
+					entry = getHistoryEntry(history_idx);
+
+						/* TODO: Implement a growSliceTo(min_cap) 
+						 * to make this process more efficient */
+					while(strlen(entry) >= input->cap) {
+						growSlice(input);
+					}
 					strcpy(input->arr, getHistoryEntry(history_idx));
 					input->len = strlen(input->arr);
 					input_idx = input->len;

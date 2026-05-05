@@ -1,6 +1,7 @@
 #ifndef LEXER_H
 #define LEXER_H
 
-void lexer(char *input, char **argv);
+#include "shell/parser.h"
+void lexer(char *input, command_t *cmd);
 
 #endif
