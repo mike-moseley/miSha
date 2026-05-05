@@ -9,6 +9,7 @@ typedef struct Command{
 	char **argv;
 	char *redirect_in;
 	char *redirect_out;
+	char *redirect_err;
 	int append;
 } command_t;
 

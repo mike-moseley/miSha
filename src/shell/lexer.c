@@ -22,6 +22,16 @@ void lexer(char *input, command_t *cmd) {
 				token = "";
 			}
 		}
+		if(token[0] == '2') {
+			if(token[1] == '>') {
+				if(token[2] == '>'){
+					cmd->append = 1;
+				}
+				cmd->redirect_err = strtok(NULL, " \t");
+				cmd->argv[i] = NULL;
+				return;
+			}
+		}
 		if (token[0] == '>') {
 			if(token[1] == '>') {
 				cmd->append = 1;
