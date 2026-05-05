@@ -5,13 +5,13 @@
 #include "vendor/alloc/alloc_error.h"
 #include "vendor/alloc/arena.h"
 #include <ctype.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 
 typedef enum { NORMAL, IN_DOUBLE_QUOTE, IN_SINGLE_QUOTE } lexer_state_t;
 
 void lexer(char *input, command_t *cmd, arena_t *arena) {
-	char *token, *str;
 	lexer_state_t state;
 	char *token_ptr;
 	char *token_start;
@@ -37,6 +37,9 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 				argc++;
 				err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
 				token_start = token_ptr;
+			} else if(state != NORMAL) {
+				*token_ptr = input[i];
+				token_ptr++;
 			}
 			break;
 		}
@@ -64,12 +67,18 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 			break;
 		}
 		case '$': {
+			char *token;
 			char tmp[BUF_SIZE];
 			int j;
 			int t;
 			j = i + 1;
 			t = 0;
-			while(isalnum(input[j])) {
+			if(state == IN_SINGLE_QUOTE) {
+				*token_ptr = input[i];
+				token_ptr++;
+				break;
+			}
+			while(isalnum(input[j]) || input[j] == '_') {
 				tmp[t] = input[j];
 				j++;
 				t++;
@@ -85,7 +94,10 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 		}
 		case '>': {
 			char tmp[BUF_SIZE];
-			if(input[i + 1] == '>') cmd->append = 1;
+			if(input[i + 1] == '>') {
+				cmd->append = 1;
+				i++;
+			}
 			read_token(input, &i, tmp);
 			if(tmp[0] == '\0') {
 				break;
@@ -99,6 +111,38 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 			break;
 		}
 		case '<': {
+			char tmp[BUF_SIZE];
+			read_token(input, &i, tmp);
+			if(tmp[0] == '\0') {
+				break;
+			}
+			err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+			strcpy(token_ptr, tmp);
+			cmd->redirect_in = token_ptr;
+			cmd->argv[argc] = NULL;
+			err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+			token_start = token_ptr;
+			break;
+		}
+		case '2': {
+			char tmp[BUF_SIZE];
+			if(input[i + 1] == '>') {
+				i++;
+				if(input[i + 1] == '>') {
+					cmd->append_err = 1;
+					i++;
+				}
+				read_token(input, &i, tmp);
+				if(tmp[0] == '\0') {
+					break;
+				}
+				err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+				strcpy(token_ptr, tmp);
+				cmd->redirect_err = token_ptr;
+				cmd->argv[argc] = NULL;
+				err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+				token_start = token_ptr;
+			}
 			break;
 		}
 		default:
@@ -107,14 +151,20 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 		}
 		i++;
 	}
+	if(token_ptr != token_start) {
+		*token_ptr = '\0';
+		cmd->argv[argc] = token_start;
+		argc++;
+	}
+	cmd->argv[argc] = NULL;
 }
 
 void read_token(char *input, int *i, char *buf) {
 	int t;
 	t = 0;
 	while(isspace(input[*i]))
-		i++;
-	while(!isspace(input[*i])) {
+		(*i)++;
+	while(!isspace(input[*i]) && (input[*i] != '\0')) {
 		buf[t] = input[*i];
 		(*i)++;
 		t++;

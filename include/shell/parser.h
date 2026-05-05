@@ -11,6 +11,7 @@ typedef struct Command{
 	char *redirect_out;
 	char *redirect_err;
 	int append;
+	int append_err;
 } command_t;
 
 command_t *parseCommands(char *input, pool_t *pool, arena_t *arena);

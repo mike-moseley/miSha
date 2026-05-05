@@ -23,7 +23,10 @@ int main(void) {
 	BuiltinCode builtin_code;
 	command_t *cmd;
 
-	arenaCreate(MAX_ARGS * sizeof(char *) * PIPE_DEPTH, &parser_arena);
+	arenaCreate((MAX_ARGS * sizeof(char *)
+			 + (MAX_ARGS * BUF_SIZE))
+			 * PIPE_DEPTH, &parser_arena);
+	
 	atexit(cleanupArenas);
 	poolCreate(MAX_ARGS, sizeof(command_t), &parser_pool);
 	atexit(cleanupPools);

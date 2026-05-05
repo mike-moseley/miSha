@@ -21,7 +21,9 @@ void setUp(void) {
 	int devnull;
 	tcgetattr(STDIN_FILENO, &saved);
 	poolCreate(MAX_ARGS, sizeof(command_t), &pool);
-	arenaCreate(MAX_ARGS * sizeof(char *) * PIPE_DEPTH, &arena);
+	arenaCreate((MAX_ARGS * sizeof(char *)
+			 + (MAX_ARGS * BUF_SIZE))
+			 * PIPE_DEPTH, &arena);
 	/* Redirect stderr so it doesn't mess up output of tests*/
 	stderr_fd = dup(STDERR_FILENO);
 	devnull = open("/dev/null", O_WRONLY);
@@ -95,7 +97,7 @@ void test_two_commands(void) {
 	result = execute(cmd);
 	bytes = read(stdout_pipe[0], buf, sizeof(buf));
 	/* null terminate buf */
-	buf[bytes - 1] = '\0';
+	buf[bytes] = '\0';
 	dup2(stdout_fd, STDOUT_FILENO);
 	TEST_ASSERT_EQUAL(WEXITSTATUS(result), 0);
 	TEST_ASSERT_EQUAL_STRING("hello\n", buf);
