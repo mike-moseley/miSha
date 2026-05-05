@@ -22,6 +22,9 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 	if(cmd == NULL) return;
 
 	err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+	if(err != ALLOC_OK) {
+		perror("Error allocating to arena in lexer.c");
+	}
 
 	token_start = token_ptr;
 	i = 0;
@@ -36,6 +39,9 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 				cmd->argv[argc] = token_start;
 				argc++;
 				err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+				if(err != ALLOC_OK) {
+					perror("Error allocating to arena in case ' ' in lexer.c");
+				}
 				token_start = token_ptr;
 			} else if(state != NORMAL) {
 				*token_ptr = input[i];
@@ -98,29 +104,43 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 				cmd->append = 1;
 				i++;
 			}
+			i++;
 			read_token(input, &i, tmp);
 			if(tmp[0] == '\0') {
 				break;
 			}
 			err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+			if(err != ALLOC_OK) {
+				perror("Error allocating to arena in case '>' in lexer.c");
+			}
 			strcpy(token_ptr, tmp);
 			cmd->redirect_out = token_ptr;
 			cmd->argv[argc] = NULL;
 			err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+			if(err != ALLOC_OK) {
+				perror("Error allocating to arena in case '>' in lexer.c");
+			}
 			token_start = token_ptr;
 			break;
 		}
 		case '<': {
 			char tmp[BUF_SIZE];
+			i++;
 			read_token(input, &i, tmp);
 			if(tmp[0] == '\0') {
 				break;
 			}
 			err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+			if(err != ALLOC_OK) {
+				perror("Error allocating to arena in case '<' in lexer.c");
+			}
 			strcpy(token_ptr, tmp);
 			cmd->redirect_in = token_ptr;
 			cmd->argv[argc] = NULL;
 			err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+			if(err != ALLOC_OK) {
+				perror("Error allocating to arena in case '<' in lexer.c");
+			}
 			token_start = token_ptr;
 			break;
 		}
@@ -132,15 +152,22 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 					cmd->append_err = 1;
 					i++;
 				}
+				i++;
 				read_token(input, &i, tmp);
 				if(tmp[0] == '\0') {
 					break;
 				}
 				err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+				if(err != ALLOC_OK) {
+					perror("Error allocating to arena in case '2' in lexer.c");
+				}
 				strcpy(token_ptr, tmp);
 				cmd->redirect_err = token_ptr;
 				cmd->argv[argc] = NULL;
 				err = arenaAlloc(arena, BUF_SIZE, (void **)&token_ptr);
+				if(err != ALLOC_OK) {
+					perror("Error allocating to arena in case '2' in lexer.c");
+				}
 				token_start = token_ptr;
 			}
 			break;
@@ -150,6 +177,11 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 			token_ptr++;
 		}
 		i++;
+	}
+	if(state != NORMAL) {
+		fprintf(stderr, "Quotation mark mismatch.");
+		cmd->argv[argc] = NULL;
+		return;
 	}
 	if(token_ptr != token_start) {
 		*token_ptr = '\0';

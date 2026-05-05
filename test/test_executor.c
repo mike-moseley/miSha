@@ -4,6 +4,7 @@
 #include "unity.h"
 #include "unity_internals.h"
 #include <fcntl.h>
+#include <string.h>
 #include <sys/wait.h>
 #include <termios.h>
 #include <unistd.h>
@@ -50,6 +51,7 @@ void test_single_command_success(void) {
 	int result;
 	char *argv[] = {"true", NULL};
 	command_t cmd;
+	memset(&cmd, 0, sizeof(command_t));
 	cmd.next = NULL;
 	cmd.argv = argv;
 	result = execute(&cmd);
@@ -60,6 +62,7 @@ void test_single_command_fail(void) {
 	int result;
 	char *argv[] = {"false", NULL};
 	command_t cmd;
+	memset(&cmd, 0, sizeof(command_t));
 	cmd.next = NULL;
 	cmd.argv = argv;
 	result = execute(&cmd);
@@ -70,6 +73,7 @@ void test_single_command_dne(void) {
 	int result;
 	char *argv[] = {"/not_a_binary", NULL};
 	command_t cmd;
+	memset(&cmd, 0, sizeof(command_t));
 	cmd.next = NULL;
 	cmd.argv = argv;
 	result = execute(&cmd);

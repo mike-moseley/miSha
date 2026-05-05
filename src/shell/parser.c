@@ -14,7 +14,6 @@ command_t *parseCommands(char *input, pool_t *pool, arena_t *arena) {
 
 	alloc_err = poolAlloc(pool,&ptr);
 	if (alloc_err != ALLOC_OK) {
-
 		perror("Pool allocation error in parseCommands in parser.c");
 		return NULL;
 	}

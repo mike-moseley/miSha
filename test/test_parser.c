@@ -9,7 +9,9 @@ arena_t *arena;
 
 void setUp(void) {
 	poolCreate(MAX_ARGS, sizeof(command_t), &pool);
-	arenaCreate(MAX_ARGS * sizeof(char *) * PIPE_DEPTH, &arena);
+	arenaCreate((MAX_ARGS * sizeof(char *)
+			 + (MAX_ARGS * BUF_SIZE))
+			 * PIPE_DEPTH, &arena);
 }
 
 void tearDown(void) {
