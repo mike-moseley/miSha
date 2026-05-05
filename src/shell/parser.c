@@ -30,11 +30,11 @@ command_t *parseCommands(char *input, pool_t *pool, arena_t *arena) {
 
 	delimit = strchr(input,'|');
 	if(delimit == NULL) {
-		lexer(input, cmd);
+		lexer(input, cmd, arena);
 		cmd->next = NULL;
 	} else {
 		*delimit = '\0';
-		lexer(input, cmd);
+		lexer(input, cmd, arena);
 		cmd->next = parseCommands(delimit+1, pool, arena);
 	}
 	return cmd;

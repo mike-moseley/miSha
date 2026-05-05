@@ -37,10 +37,13 @@ int execute(command_t *cmd) {
 				close(redirect_fd);
 			}
 			if(cmd->redirect_err != NULL) {
-					redirect_fd = open(cmd->redirect_err, O_WRONLY | O_CREAT | (cmd->append ? O_APPEND : O_TRUNC), 0644);
-					dup2(redirect_fd, STDERR_FILENO);
-					close(redirect_fd);
-				}
+				redirect_fd = open(cmd->redirect_err,
+				                   O_WRONLY | O_CREAT |
+				                       (cmd->append ? O_APPEND : O_TRUNC),
+				                   0644);
+				dup2(redirect_fd, STDERR_FILENO);
+				close(redirect_fd);
+			}
 			execvp(cmd->argv[0], cmd->argv);
 			/* Only reachable if execvp fails */
 			perror("\nexecvp in non-pipe execute in executor.c\n");
