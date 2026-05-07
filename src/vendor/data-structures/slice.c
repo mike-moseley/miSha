@@ -163,7 +163,7 @@ cds_err_t insertToSlice(slice_t *slice, void *data, size_t idx) {
 	slice->len++;
 	return CDS_OK;
 }
-cds_err_t removeElement(slice_t *slice, size_t idx, void(*free_data)(void *)) { 
+cds_err_t sliceRemoveElement(slice_t *slice, size_t idx, void(*free_data)(void *)) { 
 	void *element_ptr;
 	void *move_ptr;
 	if (slice == NULL) {
