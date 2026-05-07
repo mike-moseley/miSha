@@ -28,11 +28,19 @@ int execute(command_t *cmd) {
 				                   O_WRONLY | O_CREAT |
 				                       (cmd->append ? O_APPEND : O_TRUNC),
 				                   0644);
+				if (redirect_fd == -1) {
+					perror("Error opening file in execute in executor.c");
+					exit(EXIT_FAILURE);
+				}
 				dup2(redirect_fd, STDOUT_FILENO);
 				close(redirect_fd);
 			}
 			if(cmd->redirect_in != NULL) {
 				redirect_fd = open(cmd->redirect_in, O_RDONLY);
+				if (redirect_fd == -1) {
+					perror("Error opening file in execute in executor.c");
+					exit(EXIT_FAILURE);
+				}
 				dup2(redirect_fd, STDIN_FILENO);
 				close(redirect_fd);
 			}
@@ -41,6 +49,10 @@ int execute(command_t *cmd) {
 				                   O_WRONLY | O_CREAT |
 				                       (cmd->append_err ? O_APPEND : O_TRUNC),
 				                   0644);
+				if (redirect_fd == -1) {
+					perror("Error opening file in execute in executor.c");
+					exit(EXIT_FAILURE);
+				}
 				dup2(redirect_fd, STDERR_FILENO);
 				close(redirect_fd);
 			}
