@@ -172,6 +172,10 @@ void lexer(char *input, command_t *cmd, arena_t *arena) {
 			}
 			break;
 		}
+		case '&': {
+			cmd->background = 1;
+			break;
+		}
 		default:
 			*token_ptr = input[i];
 			token_ptr++;

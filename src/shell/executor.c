@@ -11,6 +11,7 @@
 int execute(command_t *cmd) {
 	pid_t pid;
 	int status;
+	status = 0;
 
 	if(cmd == NULL) return -1;
 
@@ -61,7 +62,9 @@ int execute(command_t *cmd) {
 			perror("\nexecvp in non-pipe execute in executor.c\n");
 			exit(EXIT_FAILURE);
 		default:
-			waitpid(pid, &status, 0);
+			if(cmd->background == 0){
+				waitpid(pid, &status, 0);
+			}
 			enableRawMode();
 			return status;
 		}
