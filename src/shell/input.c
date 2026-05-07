@@ -1,5 +1,7 @@
 #include "shell/input.h"
 #include "shell/history.h"
+#include "vendor/alloc/alloc_error.h"
+#include "vendor/data-structures/cds_types.h"
 #include "vendor/data-structures/slice.h"
 #include <stdint.h>
 #include <stdio.h>
@@ -14,6 +16,7 @@ int readline_raw(slice_t *input) {
 	unsigned char c;
 	size_t input_idx;
 	size_t history_idx;
+	cds_err_t cds_err;
 	history_idx = getHistoryLen();
 
 	writePrompt();
@@ -47,7 +50,11 @@ int readline_raw(slice_t *input) {
 		case 127: {
 			if(input_idx > 0) {
 				input_idx--;
-				removeElement(input, input_idx, NULL);
+				cds_err = sliceRemoveElement(input, input_idx, NULL);
+				if(cds_err != CDS_OK) {
+					perror("Error removing element from slice in input.c");
+					return -1;
+				}
 				clearLine();
 				writePrompt();
 				write(STDOUT_FILENO, input->arr, input->len);
@@ -92,7 +99,11 @@ int readline_raw(slice_t *input) {
 						/* TODO: Implement a growSliceTo(min_cap) 
 						 * to make this process more efficient */
 					while(strlen(entry) >= input->cap) {
-						growSlice(input);
+						cds_err = growSlice(input);
+						if(cds_err != CDS_OK) {
+							perror("Error growing slice in input.c");
+							return -1;
+						}
 					}
 					strcpy(input->arr, getHistoryEntry(history_idx));
 					input->len = strlen(input->arr);
@@ -108,7 +119,11 @@ int readline_raw(slice_t *input) {
 				appendSlice(input, &c);
 			} else {
 				/* TODO: Only redraw what is necessary instead of whole line*/
-				insertToSlice(input, &c, input_idx);
+				cds_err = insertToSlice(input, &c, input_idx);
+				if(cds_err!=CDS_OK) {
+					perror("Error inserting to slice in input.c");
+					return -1;
+				}
 				clearLine();
 				writePrompt();
 				write(STDOUT_FILENO, input->arr, input->len);
@@ -119,7 +134,11 @@ int readline_raw(slice_t *input) {
 		}
 	} while(c != '\n');
 	write(STDOUT_FILENO, "\n", 1);
-	appendSlice(input, &null_term);
+	cds_err = appendSlice(input, &null_term);
+	if(cds_err != CDS_OK){
+		perror("Error appending slice in input.c");
+		return -1;
+	}
 	return 0;
 }
 
