@@ -2,6 +2,7 @@
 #include "shell/input.h"
 #include "shell/parser.h"
 #include <fcntl.h>
+#include <signal.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <sys/types.h>
@@ -23,6 +24,7 @@ int execute(command_t *cmd) {
 			perror("\nfork in non-pipe execute in executor.c\n");
 			exit(EXIT_FAILURE);
 		case 0:
+			signal(SIGINT, SIG_DFL);
 			restoreTerminal();
 			if(cmd->redirect_out != NULL) {
 				redirect_fd = open(cmd->redirect_out,
@@ -79,6 +81,8 @@ int execute(command_t *cmd) {
 			perror("\nfork in pipe execute");
 			exit(EXIT_FAILURE);
 		case 0:
+			/* Restore SIGINT handling on child */
+			signal(SIGINT, SIG_DFL);
 			restoreTerminal();
 			dup2(pipefd[1], STDOUT_FILENO);
 			close(pipefd[0]);
@@ -88,6 +92,7 @@ int execute(command_t *cmd) {
 			perror("\nexecvp in pipe execute in executor.c\n");
 			exit(EXIT_FAILURE);
 		default:
+			signal(SIGINT, SIG_DFL);
 			rhs_pid = fork();
 			switch(rhs_pid) {
 			case -1:

@@ -3,6 +3,7 @@
 #include "vendor/alloc/alloc_error.h"
 #include "vendor/data-structures/cds_types.h"
 #include "vendor/data-structures/slice.h"
+#include <signal.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
@@ -30,7 +31,6 @@ int readline_raw(slice_t *input) {
 			input_idx = 0;
 			input->len = 0;
 			clearLine();
-			write(STDOUT_FILENO, "Type `exit` to exit.\n", 21);
 			writePrompt();
 			break;
 		}
@@ -142,9 +142,13 @@ int readline_raw(slice_t *input) {
 	return 0;
 }
 
+void initTerminal(void) {
+	tcgetattr(STDIN_FILENO, &orig_term);
+	orig_term.c_lflag |= (ISIG);
+}
+
 void enableRawMode(void) {
 	struct termios term;
-	tcgetattr(STDIN_FILENO, &orig_term);
 	term = orig_term;
 	term.c_lflag &= ~(ICANON | ECHO | ISIG);
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, &term);
@@ -155,7 +159,9 @@ void disableRawMode(struct termios *term) {
 	tcsetattr(STDIN_FILENO, TCSAFLUSH, term);
 }
 
-void restoreTerminal(void) { disableRawMode(&orig_term); }
+void restoreTerminal(void) { 
+	disableRawMode(&orig_term);
+}
 
 void clearLine(void) { write(STDOUT_FILENO, "\r\033[K", 4); }
 void clearScreen(void) { write(STDOUT_FILENO, "\r\033[2J\033[H", 8); }

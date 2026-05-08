@@ -6,6 +6,7 @@
 #include <termios.h>
 
 int readline_raw(slice_t *input);
+void initTerminal(void);
 void enableRawMode(void);
 void disableRawMode(struct termios *termios_p);
 void restoreTerminal(void);
