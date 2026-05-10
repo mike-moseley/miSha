@@ -55,11 +55,13 @@ cmake --build cmake
 
 ```
 main.c        REPL loop — prompt, read, dispatch
+input.c       raw mode terminal input, cursor navigation, Ctrl key handling
 lexer.c       tokenize raw input into a NULL-terminated argv array
 parser.c      token stream → command struct (pipelines, redirects, sequences)
 executor.c    fork/exec for external commands; pipe and redirect setup
 builtins.c    built-in handlers: cd, exit, export, unset
 env.c         environment variable table and $VAR expansion
+history.c     command history via ring buffer, arrow-key navigation
 ```
 
 ---
@@ -86,8 +88,8 @@ env.c         environment variable table and $VAR expansion
 - [x] Executor: chain commands with `pipe(2)`, dup stdin/stdout
 
 ### Milestone 4 — Redirects
-- [x] Parser: recognise `>`, `>>`, `<`
-- [ ] Executor: open files and `dup2` onto stdin/stdout/stderr
+- [x] Parser: recognise `>`, `>>`, `<`, `2>`
+- [x] Executor: open files and `dup2` onto stdin/stdout/stderr
 
 ### Milestone 5 — Quality of life
 - [ ] Background jobs with `&`
