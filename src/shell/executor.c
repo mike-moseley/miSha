@@ -1,6 +1,7 @@
 #include "shell/executor.h"
 #include "shell/input.h"
 #include "shell/parser.h"
+#include <errno.h>
 #include <fcntl.h>
 #include <signal.h>
 #include <stdio.h>
@@ -22,16 +23,19 @@ int execute(command_t *cmd) {
 		switch(pid) {
 		case -1:
 			perror("\nfork in non-pipe execute in executor.c\n");
+			write(STDOUT_FILENO, "reaped\n", 7);
 			exit(EXIT_FAILURE);
 		case 0:
 			signal(SIGINT, SIG_DFL);
-			restoreTerminal();
+			if(cmd->background == 0) {
+				restoreTerminal();
+			}
 			if(cmd->redirect_out != NULL) {
 				redirect_fd = open(cmd->redirect_out,
 				                   O_WRONLY | O_CREAT |
 				                       (cmd->append ? O_APPEND : O_TRUNC),
 				                   0644);
-				if (redirect_fd == -1) {
+				if(redirect_fd == -1) {
 					perror("Error opening file in execute in executor.c");
 					exit(EXIT_FAILURE);
 				}
@@ -40,7 +44,7 @@ int execute(command_t *cmd) {
 			}
 			if(cmd->redirect_in != NULL) {
 				redirect_fd = open(cmd->redirect_in, O_RDONLY);
-				if (redirect_fd == -1) {
+				if(redirect_fd == -1) {
 					perror("Error opening file in execute in executor.c");
 					exit(EXIT_FAILURE);
 				}
@@ -52,7 +56,7 @@ int execute(command_t *cmd) {
 				                   O_WRONLY | O_CREAT |
 				                       (cmd->append_err ? O_APPEND : O_TRUNC),
 				                   0644);
-				if (redirect_fd == -1) {
+				if(redirect_fd == -1) {
 					perror("Error opening file in execute in executor.c");
 					exit(EXIT_FAILURE);
 				}
@@ -64,8 +68,11 @@ int execute(command_t *cmd) {
 			perror("\nexecvp in non-pipe execute in executor.c\n");
 			exit(EXIT_FAILURE);
 		default:
-			if(cmd->background == 0){
-				waitpid(pid, &status, 0);
+			if(cmd->background == 0) {
+				int result;
+				do {
+					result = waitpid(pid, &status, 0);
+				} while(result == -1 && errno == EINTR);
 			}
 			enableRawMode();
 			return status;

@@ -10,6 +10,7 @@
 #include "vendor/data-structures/slice.h"
 #include <signal.h>
 #include <stdlib.h>
+#include <sys/wait.h>
 #include <termios.h>
 
 arena_t *parser_arena;
@@ -20,11 +21,17 @@ void cleanupArenas(void) { arenaDestroy(parser_arena); }
 
 void cleanupPools(void) { poolDestroy(parser_pool); }
 
+void sigchld_handler(int sig) {
+	(void)sig;
+	while(waitpid(-1, NULL, WNOHANG) > 0);
+}
+
 int main(void) {
 	BuiltinCode builtin_code;
 	command_t *cmd;
 
 	signal(SIGINT, SIG_IGN);
+	signal(SIGCHLD, sigchld_handler);
 	arenaCreate((MAX_ARGS * sizeof(char *)
 			 + (MAX_ARGS * BUF_SIZE))
 			 * PIPE_DEPTH, &parser_arena);
