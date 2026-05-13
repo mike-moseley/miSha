@@ -23,7 +23,6 @@ int execute(command_t *cmd) {
 		switch(pid) {
 		case -1:
 			perror("\nfork in non-pipe execute in executor.c\n");
-			write(STDOUT_FILENO, "reaped\n", 7);
 			exit(EXIT_FAILURE);
 		case 0:
 			signal(SIGINT, SIG_DFL);

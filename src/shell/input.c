@@ -1,9 +1,7 @@
 #include "shell/input.h"
 #include "shell/history.h"
-#include "vendor/alloc/alloc_error.h"
 #include "vendor/data-structures/cds_types.h"
 #include "vendor/data-structures/slice.h"
-#include <signal.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <string.h>
